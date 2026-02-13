@@ -57,7 +57,7 @@ export default class OperationContainer extends PureComponent {
 
   mapStateToProps(nextState, props) {
     const { op, layoutSelectors, getConfigs } = props
-    const { docExpansion, deepLinking, displayOperationId, displayRequestDuration, supportedSubmitMethods } = getConfigs()
+    const { docExpansion, deepLinking, displayOperationId, displayRequestDuration, supportedSubmitMethods, operationsCollapsible } = getConfigs()
     const showSummary = layoutSelectors.showSummary()
     const operationId = op.getIn(["operation", "__originalOperationId"]) || op.getIn(["operation", "operationId"]) || opId(op.get("operation"), props.path, props.method) || op.get("id")
     const isShownKey = ["operations", props.tag, operationId]
@@ -74,7 +74,8 @@ export default class OperationContainer extends PureComponent {
       allowTryItOut,
       security,
       isAuthorized: props.authSelectors.isAuthorized(security),
-      isShown: layoutSelectors.isShown(isShownKey, docExpansion === "full" ),
+      // Force operations to always be shown (expanded)
+      isShown: true,
       jumpToKey: `paths.${props.path}.${props.method}`,
       response: props.specSelectors.responseFor(props.path, props.method),
       request: props.specSelectors.requestFor(props.path, props.method)
@@ -104,13 +105,8 @@ export default class OperationContainer extends PureComponent {
   }
 
   toggleShown =() => {
-    let { layoutActions, tag, operationId, isShown } = this.props
-    const resolvedSubtree = this.getResolvedSubtree()
-    if(!isShown && resolvedSubtree === undefined) {
-      // transitioning from collapsed to expanded
-      this.requestResolvedSubtree()
-    }
-    layoutActions.show(["operations", tag, operationId], !isShown)
+    // Accordion functionality disabled - operations always stay expanded
+    return
   }
 
   onCancelClick=() => {

@@ -4,7 +4,7 @@ window.onload = function() {
   window["SwaggerUIStandalonePreset"] = window["swagger-ui-standalone-preset"]
   // Build a system
   const ui = SwaggerUIBundle({
-    url: "https://petstore.swagger.io/v2/swagger.json",
+    url: "http://localhost:3001/swagger.json",
     dom_id: "#swagger-ui",
     presets: [
       SwaggerUIBundle.presets.apis,
@@ -14,7 +14,27 @@ window.onload = function() {
       SwaggerUIBundle.plugins.DownloadUrl
     ],
     // requestSnippetsEnabled: true,
-    layout: "StandaloneLayout"
+    layout: "StandaloneLayout",
+    
+    // Set to false to hide Authorize button and lock icons
+    /// Set to true to show authorization UI
+    showAuthorization: false,
+    
+    // Set to false to hide the "Try it out" button
+    // Set to true to show the "Try it out" button
+    showTryItOut: false,
+    
+    // Set to false to hide info section links (URL, contact, license, external docs)
+    // Set to true to show info section links
+    showInfoLinks: false,
+    
+    // Set to false to keep operations always expanded (no accordion)
+    // Set to true to allow collapsing/expanding operations
+    operationsCollapsible: false,
+    
+    // Set to false to hide utility buttons (copy, jump-to) on operations
+    // Set to true to show utility buttons
+    showOperationUtilities: false
   })
 
   window.ui = ui

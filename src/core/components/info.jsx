@@ -53,6 +53,7 @@ class Info extends React.Component {
     basePath: PropTypes.string,
     externalDocs: ImPropTypes.map,
     getComponent: PropTypes.func.isRequired,
+    getConfigs: PropTypes.func, // Optional - will default to showing links if not provided
     oas3selectors: PropTypes.func,
     selectedServer: PropTypes.string,
   }
@@ -64,10 +65,16 @@ class Info extends React.Component {
       host,
       basePath,
       getComponent,
+      getConfigs,
       externalDocs,
       selectedServer,
       url: specUrl,
     } = this.props
+    
+    // Safety check: if getConfigs is not available, default to showing links
+    const configs = getConfigs ? getConfigs() : {}
+    const { showInfoLinks = true } = configs
+    
     const version = info.get("version")
     const description = info.get("description")
     const title = info.get("title")
@@ -107,14 +114,16 @@ class Info extends React.Component {
           {host || basePath ? (
             <InfoBasePath host={host} basePath={basePath} />
           ) : null}
-          {url && <InfoUrl getComponent={getComponent} url={url} />}
+          {/* Show URL only if showInfoLinks is true */}
+          {showInfoLinks && url && <InfoUrl getComponent={getComponent} url={url} />}
         </hgroup>
 
         <div className="description">
           <Markdown source={description} />
         </div>
 
-        {termsOfServiceUrl && (
+        {/* Show terms of service only if showInfoLinks is true */}
+        {showInfoLinks && termsOfServiceUrl && (
           <div className="info__tos">
             <Link target="_blank" href={sanitizeUrl(termsOfServiceUrl)}>
               Terms of service
@@ -122,7 +131,8 @@ class Info extends React.Component {
           </div>
         )}
 
-        {contactData?.size > 0 && (
+        {/* Show contact only if showInfoLinks is true */}
+        {showInfoLinks && contactData?.size > 0 && (
           <Contact
             getComponent={getComponent}
             data={contactData}
@@ -130,7 +140,9 @@ class Info extends React.Component {
             url={url}
           />
         )}
-        {licenseData?.size > 0 && (
+        
+        {/* Show license only if showInfoLinks is true */}
+        {showInfoLinks && licenseData?.size > 0 && (
           <License
             getComponent={getComponent}
             license={licenseData}
@@ -138,7 +150,9 @@ class Info extends React.Component {
             url={url}
           />
         )}
-        {externalDocsUrl ? (
+        
+        {/* Show external docs only if showInfoLinks is true */}
+        {showInfoLinks && externalDocsUrl ? (
           <Link
             className="info__extdocs"
             target="_blank"

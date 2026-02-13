@@ -64,6 +64,11 @@ const defaultOptions = Object.freeze({
     "trace",
   ],
   queryConfigEnabled: false,
+  showAuthorization: true, // Controls whether to show authorization UI (button and lock icons)
+  showTryItOut: true, // Controls whether to show the "Try it out" button
+  showInfoLinks: true, // Controls whether to show URL, contact, license, and external docs links in info section
+  operationsCollapsible: true, // Controls whether operations can be collapsed (accordion behavior)
+  showOperationUtilities: true, // Controls whether to show utility buttons (copy, jump-to) on operations
 
   // Initial set of plugins ( TODO rename this, or refactor - we don't need presets _and_ plugins. Its just there for performance.
   // Instead, we can compile the first plugin ( it can be a collection of plugins ), then batch the rest.

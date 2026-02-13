@@ -12,10 +12,11 @@ export default class BaseLayout extends React.Component {
     oas3Selectors: PropTypes.object.isRequired,
     oas3Actions: PropTypes.object.isRequired,
     getComponent: PropTypes.func.isRequired,
+    getConfigs: PropTypes.func, // Optional - may not be available in all contexts
   }
 
   render() {
-    const { errSelectors, specSelectors, getComponent } = this.props
+    const { errSelectors, specSelectors, getComponent, getConfigs } = this.props
 
     const SvgAssets = getComponent("SvgAssets")
     const InfoContainer = getComponent("InfoContainer", true)
@@ -93,6 +94,10 @@ export default class BaseLayout extends React.Component {
     const hasServers = servers && servers.size
     const hasSchemes = schemes && schemes.size
     const hasSecurityDefinitions = !!specSelectors.securityDefinitions()
+    
+    // Safe fallback for getConfigs
+    const configs = getConfigs ? getConfigs() : {}
+    const { showAuthorization = true } = configs
 
     return (
       <div className="swagger-ui">
@@ -118,7 +123,7 @@ export default class BaseLayout extends React.Component {
                     {hasSchemes ? <SchemesContainer /> : null}
                   </div>
                 ) : null}
-                {hasSecurityDefinitions ? <AuthorizeBtnContainer /> : null}
+                {hasSecurityDefinitions && showAuthorization ? <AuthorizeBtnContainer /> : null}
               </Col>
             </div>
           ) : null}

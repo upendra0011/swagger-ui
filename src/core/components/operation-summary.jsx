@@ -34,6 +34,7 @@ export default class OperationSummary extends PureComponent {
       authSelectors,
       operationProps,
       specPath,
+      getConfigs,
     } = this.props
 
     let {
@@ -65,6 +66,11 @@ export default class OperationSummary extends PureComponent {
     const hasSecurity = security && !!security.count()
     const securityIsOptional = hasSecurity && security.size === 1 && security.first().isEmpty()
     const allowAnonymous = !hasSecurity || securityIsOptional
+    
+    // Safe fallback for getConfigs
+    const configs = getConfigs ? getConfigs() : {}
+    const { showAuthorization = true, operationsCollapsible = true, showOperationUtilities = true } = configs
+    
     return (
       <div className={`opblock-summary opblock-summary-${method}`} >
         <button
@@ -85,26 +91,11 @@ export default class OperationSummary extends PureComponent {
 
           {displayOperationId && (originalOperationId || operationId) ? <span className="opblock-summary-operation-id">{originalOperationId || operationId}</span> : null}
         </button>
-        <CopyToClipboardBtn textToCopy={`${specPath.get(1)}`} />
-        {
-          allowAnonymous ? null :
-            <AuthorizeOperationBtn
-              isAuthorized={isAuthorized}
-              onClick={() => {
-                const applicableDefinitions = authSelectors.definitionsForRequirements(security)
-                authActions.showDefinitions(applicableDefinitions)
-              }}
-            />
-        }
-        <JumpToPath path={specPath} />{/* TODO: use wrapComponents here, swagger-ui doesn't care about jumpToPath */}
-        <button
-          aria-label={`${method} ${path.replace(/\//g, "\u200b/")}`}
-          className="opblock-control-arrow"
-          aria-expanded={isShown}
-          tabIndex="-1"
-          onClick={toggleShown}>
-          {isShown ? <ArrowUpIcon className="arrow" /> : <ArrowDownIcon className="arrow" />}
-        </button>
+        {/* All utility buttons removed */}
+        {/* <CopyToClipboardBtn textToCopy={`${specPath.get(1)}`} /> */}
+        {/* <AuthorizeOperationBtn /> */}
+        {/* <JumpToPath path={specPath} /> */}
+        {/* <Arrow button /> */}
       </div>
     )
   }
