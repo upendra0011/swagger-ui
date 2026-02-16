@@ -15,7 +15,7 @@ export default class OperationSummary extends PureComponent {
     getComponent: PropTypes.func.isRequired,
     getConfigs: PropTypes.func.isRequired,
     authActions: PropTypes.object,
-    authSelectors: PropTypes.object,
+    authSelectors: PropTypes.object
   }
 
   static defaultProps = {
@@ -30,11 +30,14 @@ export default class OperationSummary extends PureComponent {
       isShown,
       toggleShown,
       getComponent,
+      getConfigs,
       authActions,
       authSelectors,
       operationProps,
       specPath,
     } = this.props
+
+    console.log('OperationSummary - getConfigs:', this.props);
 
     let {
       summary,
@@ -65,6 +68,12 @@ export default class OperationSummary extends PureComponent {
     const hasSecurity = security && !!security.count()
     const securityIsOptional = hasSecurity && security.size === 1 && security.first().isEmpty()
     const allowAnonymous = !hasSecurity || securityIsOptional
+
+    // Get configs directly - default to true to match default behavior
+    const configs = getConfigs();
+    console.log('OperationSummary - configs:', configs);
+    const { showAuthorization, disableAccordion, showOperationUtilities } = configs;
+
     return (
       <div className={`opblock-summary opblock-summary-${method}`} >
         <button
@@ -82,29 +91,35 @@ export default class OperationSummary extends PureComponent {
               </div>
             }
           </div>
-
           {displayOperationId && (originalOperationId || operationId) ? <span className="opblock-summary-operation-id">{originalOperationId || operationId}</span> : null}
         </button>
-        <CopyToClipboardBtn textToCopy={`${specPath.get(1)}`} />
         {
-          allowAnonymous ? null :
-            <AuthorizeOperationBtn
-              isAuthorized={isAuthorized}
-              onClick={() => {
-                const applicableDefinitions = authSelectors.definitionsForRequirements(security)
-                authActions.showDefinitions(applicableDefinitions)
-              }}
-            />
+          showOperationUtilities
+            ? <CopyToClipboardBtn textToCopy={`${specPath.get(1)}`} />
+            : null
         }
-        <JumpToPath path={specPath} />{/* TODO: use wrapComponents here, swagger-ui doesn't care about jumpToPath */}
-        <button
-          aria-label={`${method} ${path.replace(/\//g, "\u200b/")}`}
-          className="opblock-control-arrow"
-          aria-expanded={isShown}
-          tabIndex="-1"
-          onClick={toggleShown}>
-          {isShown ? <ArrowUpIcon className="arrow" /> : <ArrowDownIcon className="arrow" />}
-        </button>
+        {
+          showAuthorization && (
+            allowAnonymous ? null :
+              <AuthorizeOperationBtn
+                isAuthorized={isAuthorized}
+                onClick={() => {
+                  const applicableDefinitions = authSelectors.definitionsForRequirements(security)
+                  authActions.showDefinitions(applicableDefinitions)
+                }}
+              />)
+        }
+        {
+          !disableAccordion ?
+            <button
+              aria-label={`${method} ${path.replace(/\//g, "\u200b/")}`}
+              className="opblock-control-arrow"
+              aria-expanded={isShown}
+              tabIndex="-1"
+              onClick={toggleShown}>
+              {isShown ? <ArrowUpIcon className="arrow" /> : <ArrowDownIcon className="arrow" />}
+            </button> : null
+        }
       </div>
     )
   }

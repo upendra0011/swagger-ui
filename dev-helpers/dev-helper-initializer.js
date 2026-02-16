@@ -14,7 +14,29 @@ window.onload = function() {
       SwaggerUIBundle.plugins.DownloadUrl
     ],
     // requestSnippetsEnabled: true,
-    layout: "StandaloneLayout"
+    layout: "StandaloneLayout",
+
+    // Toggle to show/hide Authorize button and lock icons
+    showAuthorization: false,
+    
+    // Toggle to show/hide the "Try it out" button
+    showTryItOut: false,
+    
+    // Toggle to show/hide info section links (URL, contact, license, external docs)
+    showInfoLinks: false,
+    
+    // Toggle to keep operations always expanded (no accordion)
+    disableAccordion: true,
+    
+    // Toggle to show/hide utility buttons (copy, jump-to) on operations
+    showOperationUtilities: false,
+    
+    // Set custom method colors
+    methodColors: {
+      post: "#E20074",
+      put: "limegreen",
+      get: "rgb(255, 0, 0)",
+    }
   })
 
   window.ui = ui
