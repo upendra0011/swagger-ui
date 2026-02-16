@@ -1,6 +1,6 @@
 # Swagger UI Custom - Test App
 
-This is a test application to verify the custom Swagger UI package (`@upendra19/swagger-ui-custom`) works correctly.
+This is a test application to verify the custom Swagger UI package (`@nishantrhombuz/swagger-ui-custom`) works correctly.
 
 ## 🚀 Quick Start
 
@@ -75,8 +75,8 @@ test-app/
 The app uses your published NPM package:
 
 ```javascript
-import SwaggerUI from '@upendra19/swagger-ui-custom'
-import '@upendra19/swagger-ui-custom/dist/swagger-ui.css'
+import SwaggerUI from '@nishantrhombuz/swagger-ui-custom'
+import '@nishantrhombuz/swagger-ui-custom/dist/swagger-ui.css'
 
 function App() {
   return (
@@ -119,7 +119,7 @@ Your package is working correctly if:
 ### Package not found
 ```bash
 # Make sure the package is published
-npm view @upendra19/swagger-ui-custom
+npm view @nishantrhombuz/swagger-ui-custom
 
 # Clear npm cache and reinstall
 npm cache clean --force
@@ -130,13 +130,13 @@ npm install
 ### Styles not loading
 Make sure you import the CSS:
 ```javascript
-import '@upendra19/swagger-ui-custom/dist/swagger-ui.css'
+import '@nishantrhombuz/swagger-ui-custom/dist/swagger-ui.css'
 ```
 
 ### Props not working
 Check browser console for errors and verify the package version:
 ```bash
-npm list @upendra19/swagger-ui-custom
+npm list @nishantrhombuz/swagger-ui-custom
 ```
 
 ## 🎉 Success!

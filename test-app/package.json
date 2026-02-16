@@ -1,7 +1,7 @@
 {
   "name": "swagger-ui-test-app",
   "version": "1.0.0",
-  "description": "Test app for @upendra19/swagger-ui-custom",
+  "description": "Test app for @nishantrhombuz/swagger-ui-custom",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@upendra19/swagger-ui-custom": "^1.0.0",
+    "@nishantrhombuz/swagger-ui-custom": "^1.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

@@ -1,7 +1,7 @@
 {
-  "name": "@upendra19/swagger-ui-custom",
-  "version": "1.0.0",
-  "description": "Customizable Swagger UI with configuration-based feature control (showAuthorization, showTryItOut, showInfoLinks, operationsCollapsible, showOperationUtilities)",
+  "name": "@nishantrhombuz/swagger-ui-custom",
+  "version": "1.1.1",
+  "description": "Customizable Swagger UI with configuration-based feature control (showAuthorization, showTryItOut, showInfoLinks, operationsCollapsible, showOperationUtilities, methodColors)",
   "keywords": [
     "swagger",
     "swagger-ui",
@@ -45,6 +45,9 @@
     "Vladimir Gorej <vladimir.gorej@gmail.com>"
   ],
   "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "automated-release": "release-it -VV --config ./release/.release-it.json",
     "build": "npm run build-stylesheets && rimraf ./dist/swagger-ui.js ./dist/swagger-ui.js.map && npm run build-all-bundles",

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
-import SwaggerUIBundle from '@upendra19/swagger-ui-custom'
-import '@upendra19/swagger-ui-custom/dist/swagger-ui.css'
+import SwaggerUIBundle from '@nishantrhombuz/swagger-ui-custom'
+import '@nishantrhombuz/swagger-ui-custom/dist/swagger-ui.css'
 import './App.css'
 import swaggerSpec from '../partners-products-catalog-v1.json'
 

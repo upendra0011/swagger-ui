@@ -4,7 +4,7 @@ window.onload = function() {
   window["SwaggerUIStandalonePreset"] = window["swagger-ui-standalone-preset"]
   // Build a system
   const ui = SwaggerUIBundle({
-    url: "http://localhost:3001/swagger.json",
+    url: "https://petstore.swagger.io/v2/swagger.json",
     dom_id: "#swagger-ui",
     presets: [
       SwaggerUIBundle.presets.apis,
@@ -34,7 +34,13 @@ window.onload = function() {
     
     // Set to false to hide utility buttons (copy, jump-to) on operations
     // Set to true to show utility buttons
-    showOperationUtilities: false
+    showOperationUtilities: false,
+    
+    methodColors: {
+      post: "#E20074",
+      put: "limegreen",
+      get: "rgb(255, 0, 0)",
+    }
   })
 
   window.ui = ui
