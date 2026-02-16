@@ -1,16 +1,53 @@
-*
-*/
+# Development files
+dev-helpers/
+test/
+cypress/
+cypress.config.js
+config/
+webpack/
+flavors/
+release/
+
+# Build artifacts
+*.log
+*.tgz
+.deps_check/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# CI/CD
+.github/
+.husky/
+.commitlintrc.json
+
+# Documentation (keep only essential ones)
+docs/
+*.md
 !README.md
-!NOTICE
-!package.json
-!dist/swagger-ui.js
-!dist/swagger-ui.js.map
-!dist/swagger-ui-bundle.js
-!dist/swagger-ui-standalone-preset.js
-!dist/swagger-ui-es-bundle.js
-!dist/swagger-ui-es-bundle-core.js
-!dist/swagger-ui-es-bundle-core.js.map
-!dist/swagger-ui.css
-!dist/swagger-ui.css.map
-!dist/oauth2-redirect.html
-!dist/oauth2-redirect.js
+!AUTHORIZATION_CONFIG.md
+!LICENSE
+
+# Dependencies
+node_modules/
+
+# Misc
+.eslintrc
+.eslintignore
+.stylelintrc
+.prettierrc
+.babelrc
+jest.config.js

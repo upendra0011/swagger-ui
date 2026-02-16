@@ -60,6 +60,10 @@ const mappings = {
   modelPropertyMacro: { typeCaster: nullableFunctionTypeCaster },
   oauth2RedirectUrl: { typeCaster: undefinedStringTypeCaster },
   onComplete: { typeCaster: nullableFunctionTypeCaster },
+  operationsCollapsible: {
+    typeCaster: booleanTypeCaster,
+    defaultValue: defaultOptions.operationsCollapsible,
+  },
   operationsSorter: {
     typeCaster: sorterTypeCaster,
   },
@@ -96,13 +100,29 @@ const mappings = {
     typeCaster: booleanTypeCaster,
     defaultValue: defaultOptions.showCommonExtensions,
   },
+  showInfoLinks: {
+    typeCaster: booleanTypeCaster,
+    defaultValue: defaultOptions.showInfoLinks,
+  },
   showExtensions: {
     typeCaster: booleanTypeCaster,
     defaultValue: defaultOptions.showExtensions,
   },
+  showAuthorization: {
+    typeCaster: booleanTypeCaster,
+    defaultValue: defaultOptions.showAuthorization,
+  },
   showMutatedRequest: {
     typeCaster: booleanTypeCaster,
     defaultValue: defaultOptions.showMutatedRequest,
+  },
+  showTryItOut: {
+    typeCaster: booleanTypeCaster,
+    defaultValue: defaultOptions.showTryItOut,
+  },
+  showOperationUtilities: {
+    typeCaster: booleanTypeCaster,
+    defaultValue: defaultOptions.showOperationUtilities,
   },
   spec: { typeCaster: objectTypeCaster, defaultValue: defaultOptions.spec },
   supportedSubmitMethods: {

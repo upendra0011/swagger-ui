@@ -1,0 +1,3552 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "contact": {
+      "email": "support@t-mobile.com",
+      "name": "T-Mobile.",
+      "url": "http://www.t-mobile.com"
+    },
+    "description": "The Product Catalog enables secure access to product data through a consistent and scalable interface. It facilitates product catalog retrieval, compatibility validation, and SKU-level filtering to streamline operations and digital experiences.",
+    "license": {
+      "name": "T-Mobile Inc.",
+      "url": "http://www.t-mobile.com"
+    },
+    "title": "T-Mobile Product Catalog API - v1",
+    "version": "1.0.4",
+    "x-data-sensitivity": "Restricted",
+    "x-type-of-consumer": "P",
+    "x-breadth-of-consumption": "FC"
+  },
+  "paths": {
+    "/products": {
+      "post": {
+        "operationId": "productCatalog",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Access-Control-Request-Headers"
+          },
+          {
+            "$ref": "#/components/parameters/Access-Control-Request-Method"
+          },
+          {
+            "$ref": "#/components/parameters/activity-id"
+          },
+          {
+            "$ref": "#/components/parameters/interaction-id"
+          },
+          {
+            "$ref": "#/components/parameters/service-transaction-id"
+          },
+          {
+            "$ref": "#/components/parameters/session-id"
+          },
+          {
+            "$ref": "#/components/parameters/channel-origin"
+          },
+          {
+            "$ref": "#/components/parameters/workflow-id"
+          },
+          {
+            "$ref": "#/components/parameters/x-auth-originator"
+          },
+          {
+            "$ref": "#/components/parameters/x-authorization"
+          }
+        ],
+        "requestBody": {
+          "description": "Product request payload",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductRequest"
+              },
+              "examples": {
+                "RatePlanFirstNavigation": {
+                  "summary": "Rate plan catalog",
+                  "value": {
+                    "billingAccountNumber": "887654323",
+                    "offerType": "PLAN"
+                  },
+                  "x-exampleId": ["ratePlanCatalog"]
+                },
+                "DeviceFirstNavigation": {
+                  "summary": "Device catalog",
+                  "value": {
+                    "billingAccountNumber": "887654321",
+                    "offerType": "DEVICE"
+                  },
+                  "x-exampleId": ["deviceCatalog"]
+                },
+                "AccessoryCatalog": {
+                  "summary": "Accessory catalog",
+                  "value": {
+                    "billingAccountNumber": "887654328",
+                    "offerType": "ACCESSORY"
+                  },
+                  "x-exampleId": ["accessoryCatalog"]
+                },
+                "DeviceAssociatedWithRatePlan": {
+                  "summary": "Device associated with rate plan",
+                  "value": {
+                    "billingAccountNumber": "887654324",
+                    "planOfferIds": ["1006077"],
+                    "offerType": "DEVICE"
+                  },
+                  "x-exampleId": ["deviceAssociatedWithRatePlan"]
+                },
+                "RatePlanAssociatedWithDevice": {
+                  "summary": "Rate plan associated with Device",
+                  "value": {
+                    "billingAccountNumber": "887654322",
+                    "deviceOfferIds": ["1001183"],
+                    "offerType": "PLAN"
+                  },
+                  "x-exampleId": ["ratePlanAssociatedWithDevice"]
+                },
+                "ServiceAssociatedWithRatePlan": {
+                  "summary": "Service associated with rate plan",
+                  "value": {
+                    "billingAccountNumber": "887654326",
+                    "planOfferIds": ["1006079"],
+                    "offerType": "SERVICE"
+                  },
+                  "x-exampleId": ["serviceAssociatedWithRatePlan"]
+                },
+                "ServiceAssociatedWithRatePlanandDevice": {
+                  "summary": "Service associated with rate plan and device",
+                  "value": {
+                    "billingAccountNumber": "887654325",
+                    "deviceOfferIds": ["1001184"],
+                    "planOfferIds": ["1006078"],
+                    "offerType": "SERVICE"
+                  },
+                  "x-exampleId": ["serviceAssociatedWithRatePlan"]
+                },
+                "AccessoryAssociatedWithDevice": {
+                  "summary": "Accessory associated with device",
+                  "value": {
+                    "billingAccountNumber": "887654327",
+                    "deviceOfferIds": ["1010130"],
+                    "offerType": "ACCESSORY"
+                  },
+                  "x-exampleId": ["accessoryAssociatedWithDevice"]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductResponse"
+                },
+                "examples": {
+                  "RatePlanctalogResponse": {
+                    "summary": "Rate plan catalog",
+                    "value": {
+                      "offers": [
+                        {
+                          "offerId": "305735",
+                          "offerType": "PLAN",
+                          "offerName": "Magenta® Plus Business Tablet with 10GB of high-speed hotspot data (TI)",
+                          "prices": [
+                            {
+                              "key": "recurringFrequency",
+                              "value": "monthly"
+                            },
+                            {
+                              "key": "offerPrice",
+                              "value": "75.00"
+                            },
+                            {
+                              "key": "listPrice",
+                              "value": "75.00"
+                            }
+                          ],
+                          "offerCharacteristics": [
+                            {
+                              "key": "serviceOfferingCode",
+                              "value": "ZMAGTB10"
+                            },
+                            {
+                              "key": "planType",
+                              "value": "Value"
+                            },
+                            {
+                              "key": "autoPayEligible",
+                              "value": "true"
+                            },
+                            {
+                              "key": "mobileBroadband",
+                              "value": "true"
+                            },
+                            {
+                              "key": "taxTreatment",
+                              "value": "TAX_INCLUSIVE"
+                            }
+                          ],
+                          "description": "This Magenta Plus Business Tablet plan provides: Taxes and fees are included in monthly service price. The price you see is the price you pay. All Unlimited. ALL IN! Unlimited 5G/4G LTE data on our network so you can watch, stream and play all day! No data overages. 10GB of 5G/4G LTE mobile hotspot data, then at max 3G speeds after that. Plus data in Mexico and Canada with up to 5GB of 5G/4G LTE at no extra charge! Get unlimited data at 2G speeds almost everywhere else in the world. Capable device required; coverage not available in some areas. $40 discount when you also have a qualifying voice plan on your account. Use AutoPay to get $5 off your monthly service up to 8 lines. Video typically streams on smartphone/tablet at DVD quality (480p) unless HD pass is activated. During congestion, customers on this plan may notice speeds lower than other customers and further reduction if using >50GB/mo., due to data prioritization. For tablets, on-device usage is prioritized over tethering usage, which may result in higher speeds for data used on device."
+                        },
+                        {
+                          "offerId": "1000467",
+                          "offerType": "PLAN",
+                          "offerName": "Business Unlimited Select 30 Month Subsidy 2.0 Tier D",
+                          "prices": [
+                            {
+                              "key": "recurringFrequency",
+                              "value": "monthly"
+                            },
+                            {
+                              "key": "offerPrice",
+                              "value": "35.00"
+                            },
+                            {
+                              "key": "listPrice",
+                              "value": "35.00"
+                            }
+                          ],
+                          "offerCharacteristics": [
+                            {
+                              "key": "serviceOfferingCode",
+                              "value": "ZU30SELD"
+                            },
+                            {
+                              "key": "planType",
+                              "value": "Classic"
+                            },
+                            {
+                              "key": "autoPayEligible",
+                              "value": "true"
+                            },
+                            {
+                              "key": "taxTreatment",
+                              "value": "TAX_EXCLUSIVE"
+                            },
+                            {
+                              "key": "subsidyPlan",
+                              "value": "true"
+                            }
+                          ],
+                          "description": "Business Unlimited for Phones includes unlimited talk, text, and data on our advanced network with no data overages. You can also call, text, and use up to 5GB of 4G LTE data in Mexico and Canada at no extra charge. You get unlimited text and 2G data roaming in more than 210 countries and destinations, unlimited domestic data roaming and unlimited video streaming at DVD quality, 5GB of 4G LTE hotspot data (with unlimited max 3G hotspot speeds thereafter), free texting and a free hour of Wi-Fi on Gogo-enabled flights--all included at no extra charge. Video typically streams on smartphone/tablet at DVD quality (480p) unless you add an HD Day Pass. Subsidy plans include part or all of the cost of a phone in the monthly charge, and a two-year service agreement is required. If you cancel service, you may be charged a subsidy repayment (1/30th of subsidy per month remaining). Coverage not available in some areas. During congestion, a small fraction of customers using >50GB/mo. may notice reduced speeds until next bill cycle due to data prioritization."
+                        },
+                        {
+                          "offerId": "244209",
+                          "offerType": "PLAN",
+                          "offerName": "Magenta 1.0 Business (9 line)",
+                          "prices": [
+                            {
+                              "key": "recurringFrequency",
+                              "value": "monthly"
+                            },
+                            {
+                              "key": "offerPrice",
+                              "value": "310.00"
+                            },
+                            {
+                              "key": "listPrice",
+                              "value": "310.00"
+                            }
+                          ],
+                          "offerCharacteristics": [
+                            {
+                              "key": "serviceOfferingCode",
+                              "value": "ZMAGENTA9"
+                            },
+                            {
+                              "key": "planType",
+                              "value": "Value"
+                            },
+                            {
+                              "key": "autoPayEligible",
+                              "value": "true"
+                            },
+                            {
+                              "key": "poolingPlan",
+                              "value": "true"
+                            },
+                            {
+                              "key": "poolingPlanServiceOfferingCode",
+                              "value": "ZMAGEADD9"
+                            },
+                            {
+                              "key": "poolingPlanMaxLines",
+                              "value": "12"
+                            },
+                            {
+                              "key": "poolingPlanMinLines",
+                              "value": "9"
+                            },
+                            {
+                              "key": "taxTreatment",
+                              "value": "TAX_INCLUSIVE"
+                            }
+                          ],
+                          "description": "The Magenta® for Business plan provides unlimited talk, text, and high-speed data with all the taxes and fees included in the monthly charge. The price you see is inclusive of all these great benefits: •Watch all your favorite TV shows and movies with a Basic Netflix subscription on us when you have 2 or more lines. You can upgrade to other Netflix plans for an additional charge. •Get fewer scam calls with Scam ID and Scam Block and know who’s calling with Caller ID, all managed through the Scam Shield™ app. PLUS keep your personal number personal with your PROXY™ number. •Texting and unlimited data at up to 2G speeds when traveling abroad in 210+ countries and destinations. •Unlimited texting and 1 hour of data included on Gogo®-enabled flights. •3GB of 4G LTE Mobile Hotspot and then unlimited 3G/600 kbps after that. •Unlimited calling, texting, and data in Mexico and Canada with up to 5GB of 4G LTE. •Use AutoPay to get $5 off each line of service up to 8 lines. •Video typically streams on smartphone/tablet at DVD quality (480p) unless you add an HD Day Pass or PlusUp. •On all T-Mobile plans, during congestion, the small fraction of customers using >50GB/mo. may notice reduced speeds until next bill cycle due to data prioritization."
+                        },
+                        {
+                          "offerId": "244208",
+                          "offerType": "PLAN",
+                          "offerName": "Magenta Business (2 lines)",
+                          "prices": [
+                            {
+                              "key": "recurringFrequency",
+                              "value": "monthly"
+                            },
+                            {
+                              "key": "offerPrice",
+                              "value": "25.00"
+                            },
+                            {
+                              "key": "listPrice",
+                              "value": "25.00"
+                            }
+                          ],
+                          "offerCharacteristics": [
+                            {
+                              "key": "serviceOfferingCode",
+                              "value": "ZMAGENTA9"
+                            },
+                            {
+                              "key": "planType",
+                              "value": "Value"
+                            },
+                            {
+                              "key": "autoPayEligible",
+                              "value": "true"
+                            },
+                            {
+                              "key": "poolingPlan",
+                              "value": "true"
+                            },
+                            {
+                              "key": "taxTreatment",
+                              "value": "TAX_INCLUSIVE"
+                            },
+                            {
+                              "key": "addALine",
+                              "value": "true"
+                            }
+                          ],
+                          "description": "The Magenta for Business plan provides unlimited talk, text, and high-speed data with all the taxes and fees included in the monthly charge. The price you see is inclusive of all these great benefits:  3GB of 4G LTE Mobile Hotspot and then unlimited 3G/600 kbps after that. Texting and unlimited data at up to 2G speeds when traveling abroad in 210+ countries and destinations. Unlimited texting and 1 hour of data included on Gogo-enabled flights. Unlimited calling, texting, and data in Mexico and Canada with up to 5GB of 4G LTE. Watch all your favorite TV shows and movies with a Basic Netflix subscription on us when you have 2 or more lines. You can upgrade to other Netflix plans for an additional charge. Use AutoPay to get $5 off each line of service up to 8 lines. Video typically streams on smartphone/tablet at DVD quality (480p) unless you add an HD Day Pass or PlusUp. On all T-Mobile plans, during congestion, the small fraction of customers using >50GB/mo. may notice reduced speeds until next bill cycle due to data prioritization."
+                        }
+                      ]
+                    }
+                  },
+                  "DeviceFirstNavigationResponse": {
+                    "summary": "Device catalog",
+                    "value": {
+                      "offers": [
+                        {
+                          "offerId": "1001167",
+                          "offerType": "DEVICE",
+                          "offerName": "Apple - iPhone 13 - Green",
+                          "prices": [
+                            {
+                              "key": "recurringFrequency",
+                              "value": "one-time"
+                            },
+                            {
+                              "key": "offerPrice",
+                              "value": "799.99"
+                            },
+                            {
+                              "key": "listPrice",
+                              "value": "799.99"
+                            }
+                          ],
+                          "eip": [
+                            {
+                              "minInstallment": 33.34,
+                              "salePrice": 799.99,
+                              "downPayment": 0,
+                              "numInstallment": 24,
+                              "monthlyInstallment": 33.34
+                            }
+                          ],
+                          "offerCharacteristics": [
+                            {
+                              "key": "stockKeepingUnit",
+                              "value": "610214674821"
+                            },
+                            {
+                              "key": "preOrder",
+                              "value": "true"
+                            },
+                            {
+                              "key": "simType",
+                              "value": "peSIM"
+                            }
+                          ],
+                          "description": "Give business a boost with iPhone 13. Superfast 5G and powerful A15 Bionic for incredible performance, so it’s easier to multitask. big leap in battery life, so you can get more done.5G is still developing. Not all devices & signals are compatible; may not support 5G tethering; check device specs. Coverage not available in some areas. While 5G access won't require a certain plan or feature, some uses/services might. 5G uplink not yet available. See Coverage details, Terms and Conditions, and Open Internet information for network management details (like video optimization).Compared to previous generation. Battery life varies by use and configuration.",
+                          "manufacturer": "Apple",
+                          "productImage": "/images/png/products/phones/Apple-iPhone-13-Green/65x65_1.png"
+                        },
+                        {
+                          "offerId": "294151",
+                          "offerType": "DEVICE",
+                          "offerName": "SIM Card Only - TRIPLE SIM",
+                          "prices": [
+                            {
+                              "key": "recurringFrequency",
+                              "value": "one-time"
+                            },
+                            {
+                              "key": "offerPrice",
+                              "value": "15.00"
+                            },
+                            {
+                              "key": "listPrice",
+                              "value": "15.00"
+                            }
+                          ],
+                          "offerCharacteristics": [
+                            {
+                              "key": "stockKeepingUnit",
+                              "value": "ZZZ260R070P"
+                            },
+                            {
+                              "key": "sim",
+                              "value": "true"
+                            }
+                          ],
+                          "description": "The Triple SIM card includes a Nano SIM card with Micro and Standard SIM adapters.For use with unlocked, compatible GSM phones. Once you receive your SIM card in the mail, slip it into your phone and activate the SIM",
+                          "productImage": "/images/png/products/phones/Micro_SIM/250x270.png"
+                        }
+                      ]
+                    }
+                  },
+                  "AccessoryCatalogResponse": {
+                    "summary": "Accessory catalog",
+                    "value": {
+                      "offers": [
+                        {
+                          "offerId": "305677",
+                          "offerType": "ACCESSORY",
+                          "offerName": "Apple 20W USB-C Power Adapter - White",
+                          "prices": [
+                            {
+                              "key": "recurringFrequency",
+                              "value": "one-time"
+                            },
+                            {
+                              "key": "offerPrice",
+                              "value": "19.99"
+                            },
+                            {
+                              "key": "listPrice",
+                              "value": "19.99"
+                            }
+                          ],
+                          "offerCharacteristics": [
+                            {
+                              "key": "stockKeepingUnit",
+                              "value": "194252156940"
+                            }
+                          ],
+                          "manufacturer": "Apple",
+                          "description": "The Apple 20W USB-C Power Adapter offers fast, efficient charging at home, in the office, or on the go. While the power adapter is compatible with any USB-C-enabled device, Apple recommends pairing it with the 11-inch iPad Pro and 12.9-inch iPad Pro (3rd generation) for optimal charging performance. You can also pair it with iPhone 8 or later to take advantage of the fast-charging feature.",
+                          "productImage": "/images/png/products/accessories/194252156940/194252156940-large.png"
+                        },
+                        {
+                          "offerId": "1000320",
+                          "offerType": "ACCESSORY",
+                          "offerName": "Beats Fit Pro True Wireless Earbuds - Stone Purple",
+                          "prices": [
+                            {
+                              "key": "recurringFrequency",
+                              "value": "one-time"
+                            },
+                            {
+                              "key": "offerPrice",
+                              "value": "199.99"
+                            },
+                            {
+                              "key": "listPrice",
+                              "value": "199.99"
+                            }
+                          ],
+                          "offerCharacteristics": [
+                            {
+                              "key": "stockKeepingUnit",
+                              "value": "194252484494"
+                            }
+                          ],
+                          "manufacturer": "Apple",
+                          "description": "True wireless noise cancelling Beats Fit Pro with comfortable, secure-fit wingtips are engineered for all-day activity. The flexible wingtip design conforms to your ear to comfortably lock in place so you can experience powerful, balanced sound during your work day or your workouts. With two distinct listening modes, you are in control of what you hear. Fully adaptive Active Noise Cancelling (ANC) uses real-time audio calibration to continuously pinpoint external sounds and optimize sound output, and when you need to be aware of your surroundings, easily switch to Transparency mode. Beats Fit Pro supports Spatial Audio with dynamic head tracking for immersive music, movies, and games.These earbuds are powered by the Apple H1 chip. The result -- instant one-touch pairing2, Automatic Switching3, Audio Sharing4, and hands-free \"Hey Siri\" for Apple devices. For Android users, easily connect via Class 1 Bluetooth right out of the box.",
+                          "productImage": "/images/png/products/accessories/194252484494/194252484494-large.png"
+                        },
+                        {
+                          "offerId": "282651",
+                          "offerType": "ACCESSORY",
+                          "offerName": "Apple USB C to Lightning Cable, 1m - White",
+                          "prices": [
+                            {
+                              "key": "recurringFrequency",
+                              "value": "one-time"
+                            },
+                            {
+                              "key": "offerPrice",
+                              "value": "19.99"
+                            },
+                            {
+                              "key": "listPrice",
+                              "value": "19.99"
+                            }
+                          ],
+                          "offerCharacteristics": [
+                            {
+                              "key": "stockKeepingUnit",
+                              "value": "190199370340"
+                            }
+                          ],
+                          "manufacturer": "Apple",
+                          "description": "Connect your iPhone, iPad, or iPod with Lightning connector to your USB-C or Thunderbolt 3 (USB-C) enabled Mac and iPad Pro for syncing and charging. You can also use this cable with your Apple 29W, 30W, 61W, or 87W USB-C Power Adapter to charge your iOS device, and even take advantage of the fast-charging feature on select iPhone and iPad Pro models.",
+                          "productImage": "/images/png/products/accessories/190199370340/190199370340-large.png"
+                        }
+                      ]
+                    }
+                  },
+                  "DeviceAssociatedWithRatePlanResponse": {
+                    "summary": "Device associated with rate plan",
+                    "value": {
+                      "offers": [
+                        {
+                          "offerId": "1001167",
+                          "offerType": "DEVICE",
+                          "offerName": "Apple - iPhone 13 - Green",
+                          "prices": [
+                            {
+                              "key": "recurringFrequency",
+                              "value": "one-time"
+                            },
+                            {
+                              "key": "offerPrice",
+                              "value": "799.99"
+                            },
+                            {
+                              "key": "listPrice",
+                              "value": "799.99"
+                            }
+                          ],
+                          "eip": [
+                            {
+                              "minInstallment": 33.34,
+                              "salePrice": 799.99,
+                              "downPayment": 0.0,
+                              "numInstallment": 24,
+                              "monthlyInstallment": 33.34
+                            }
+                          ],
+                          "offerCharacteristics": [
+                            {
+                              "key": "stockKeepingUnit",
+                              "value": "610214674821"
+                            },
+                            {
+                              "key": "preOrder",
+                              "value": "true"
+                            },
+                            {
+                              "key": "simType",
+                              "value": "peSIM"
+                            }
+                          ],
+                          "description": "Give business a boost with iPhone 13. Superfast 5G and powerful A15 Bionic for incredible performance, so it’s easier to multitask. big leap in battery life, so you can get more done.5G is still developing. Not all devices & signals are compatible; may not support 5G tethering; check device specs. Coverage not available in some areas. While 5G access won't require a certain plan or feature, some uses/services might. 5G uplink not yet available. See Coverage details, Terms and Conditions, and Open Internet information for network management details (like video optimization).Compared to previous generation. Battery life varies by use and configuration.",
+                          "manufacturer": "Apple",
+                          "productImage": "/images/png/products/phones/Apple-iPhone-13-Green/65x65_1.png"
+                        },
+                        {
+                          "offerId": "1001163",
+                          "offerType": "DEVICE",
+                          "offerName": "Samsung - Galaxy S22",
+                          "offerPrice": "1099.99",
+                          "prices": [
+                            {
+                              "key": "recurringFrequency",
+                              "value": "one-time"
+                            },
+                            {
+                              "key": "offerPrice",
+                              "value": "1099.99"
+                            },
+                            {
+                              "key": "listPrice",
+                              "value": "1099.99"
+                            }
+                          ],
+                          "eip": [
+                            {
+                              "minInstallment": 45.84,
+                              "salePrice": 799.99,
+                              "downPayment": 0.0,
+                              "numInstallment": 24,
+                              "monthlyInstallment": 45.84
+                            }
+                          ],
+                          "offerCharacteristics": [
+                            {
+                              "key": "stockKeepingUnit",
+                              "value": "610214673404"
+                            },
+                            {
+                              "key": "preOrder",
+                              "value": "true"
+                            },
+                            {
+                              "key": "simType",
+                              "value": "eSIM"
+                            }
+                          ],
+                          "description": "The Samsung Galaxy S22 sets a new epic standard with 8K video capture, the highest recording resolution available on a smartphone. Enjoy your favorite content on a bright, beautiful 6.1” FHD+ Dynamic AMOLED display with adaptive 120Hz refresh rate.  Capture vivid detail with a triple lens camera and a 50MP resolution main lens with up to 30X digital zoom. Power every scroll, click, tap and stream all day long with an intelligent 3700 mAh battery that keeps your day going.  Wait less and do more of what you love, with the incredibly fast 4nm processor all on the nation’s largest, fastest, and most reliable nationwide 5G network.",
+                          "manufacturer": "samsung",
+                          "productImage": "/images/png/products/phones/Samsung-Galaxy-S22-Phantom-Black/250x270_1.png"
+                        }
+                      ]
+                    }
+                  },
+                  "RatePlanAssociatedWithDeviceResponse": {
+                    "summary": "Rate plan associated with device",
+                    "value": {
+                      "offers": [
+                        {
+                          "offerId": "305226",
+                          "offerType": "PLAN",
+                          "offerName": "Business  Mobile Internet 100GB (TE)",
+                          "prices": [
+                            {
+                              "key": "recurringFrequency",
+                              "value": "monthly"
+                            },
+                            {
+                              "key": "offerPrice",
+                              "value": "55.00"
+                            },
+                            {
+                              "key": "listPrice",
+                              "value": "55.00"
+                            }
+                          ],
+                          "offerCharacteristics": [
+                            {
+                              "key": "serviceOfferingCode",
+                              "value": "ZMI100TE"
+                            },
+                            {
+                              "key": "planType",
+                              "value": "Value"
+                            },
+                            {
+                              "key": "autoPayEligible",
+                              "value": "true"
+                            },
+                            {
+                              "key": "mobileBroadband",
+                              "value": "true"
+                            },
+                            {
+                              "key": "taxTreatment",
+                              "value": "TAX_EXCLUSIVE"
+                            }
+                          ],
+                          "description": "This Mobile Internet plan provides: 100GB of monthly high-speed mobile internet data while on our network then max 2G speeds after 100GB. No data overages. Plus up to 5GB of your high-speed data in Canada and Mexico at no extra charge. Unlimited international data at up to 128kbps while roaming in 210+ countries and destinations. No annual service contract. Video typically streams on smartphone/tablet at DVD quality (480p).During congestion, customers on this plan may notice speeds lower than other customers and further reduction if using >100GB/mo., due to data prioritization."
+                        },
+                        {
+                          "offerId": "1010471",
+                          "offerType": "PLAN",
+                          "offerName": "Business 2GB MI Stacking",
+                          "prices": [
+                            {
+                              "key": "recurringFrequency",
+                              "value": "monthly"
+                            },
+                            {
+                              "key": "offerPrice",
+                              "value": "8.50"
+                            },
+                            {
+                              "key": "listPrice",
+                              "value": "8.50"
+                            }
+                          ],
+                          "offerCharacteristics": [
+                            {
+                              "key": "serviceOfferingCode",
+                              "value": "Z2GBMISTK"
+                            },
+                            {
+                              "key": "planType",
+                              "value": "Value"
+                            },
+                            {
+                              "key": "mobileBroadband",
+                              "value": "true"
+                            },
+                            {
+                              "key": "taxTreatment",
+                              "value": "TAX_EXCLUSIVE"
+                            }
+                          ],
+                          "description": "Business Stacking plan includes 2GB stackable data that can be used as hotspot on our advanced network. Once stackable data is consumed, data is charged per 10MB, rounded up to the nearest 10MB on a per line basis. Video typically streams on tablets at DVD quality (480p). Coverage not available in some areas."
+                        }
+                      ]
+                    }
+                  },
+                  "ServiceAssociatedWithRatePlanResponse": {
+                    "summary": "Service associated with rate plan",
+                    "value": {
+                      "offers": [
+                        {
+                          "offerId": "148653",
+                          "offerType": "SERVICE",
+                          "offerName": "International Long Distance Barring ALL",
+                          "prices": [
+                            {
+                              "key": "recurringFrequency",
+                              "value": "monthly"
+                            },
+                            {
+                              "key": "offerPrice",
+                              "value": "0.00"
+                            },
+                            {
+                              "key": "listPrice",
+                              "value": "0.00"
+                            }
+                          ],
+                          "offerCharacteristics": [
+                            {
+                              "key": "serviceOfferingCode",
+                              "value": "ILDBARSBP"
+                            },
+                            {
+                              "key": "category",
+                              "value": "International"
+                            },
+                            {
+                              "key": "taxTreatment",
+                              "value": "TAX_INCLUSIVE"
+                            }
+                          ],
+                          "description": "Prevents dialing to most international long distance numbers. You will still be able to place calls to destinations in Canada, Mexico, Puerto Rico, and the US Virgin Islands as well as the United States including Alaska and Hawaii."
+                        },
+                        {
+                          "offerId": "316075",
+                          "offerType": "SERVICE",
+                          "offerName": "Business Unlimited Ultimate 100GBHS",
+                          "prices": [
+                            {
+                              "key": "recurringFrequency",
+                              "value": "monthly"
+                            },
+                            {
+                              "key": "offerPrice",
+                              "value": "0.00"
+                            },
+                            {
+                              "key": "listPrice",
+                              "value": "0.00"
+                            }
+                          ],
+                          "offerCharacteristics": [
+                            {
+                              "key": "serviceOfferingCode",
+                              "value": "ZBSDTC100P"
+                            },
+                            {
+                              "key": "category",
+                              "value": "Data"
+                            },
+                            {
+                              "key": "taxTreatment",
+                              "value": "TAX_EXCLUSIVE"
+                            }
+                          ],
+                          "description": "With Business Unlimited Ultimate data you get Premium data on our network and 100 GB of high-speed mobile hotspot data (with unlimited 3G hotspot speeds thereafter).  Stream up to 4K UHD video on capable device when feature is activated, or video typically streams on device at DVD quality (480p). Capable device for 5G. Coverage not available in some areas."
+                        },
+                        {
+                          "offerId": "1010018",
+                          "offerType": "SERVICE",
+                          "offerName": "Netflix Premium",
+                          "prices": [
+                            {
+                              "key": "recurringFrequency",
+                              "value": "monthly"
+                            },
+                            {
+                              "key": "offerPrice",
+                              "value": "22.99"
+                            },
+                            {
+                              "key": "listPrice",
+                              "value": "22.99"
+                            }
+                          ],
+                          "offerCharacteristics": [
+                            {
+                              "key": "serviceOfferingCode",
+                              "value": "NOADNFLX4P"
+                            },
+                            {
+                              "key": "category",
+                              "value": "Other"
+                            },
+                            {
+                              "key": "taxTreatment",
+                              "value": "TAX_INCLUSIVE"
+                            }
+                          ],
+                          "description": "Watch original content, movies & shows on 4 screens within your household at the same time in ultra-high definition (when available). Plus, you can download videos on 4 phones or tablets. If you're already on a plan with Netflix included, sign up for Netflix. Available while you maintain a qualifying plan in good standing. Not redeemable or refundable for cash. Cancel Netflix anytime. Netflix Terms of Use apply.One offer per T-Mobile account, may take 1-2 bill cycles. Like all plans, features may change or be discontinued at any time; see T-Mobile Terms and Conditions for details. Taxes on your billed amount charged separately."
+                        }
+                      ]
+                    }
+                  },
+                  "ServiceAssociatedWithRatePlanandDeviceResponse": {
+                    "summary": "Service associated with rate plan and device",
+                    "value": {
+                      "offers": [
+                        {
+                          "offerId": "148653",
+                          "offerType": "SERVICE",
+                          "offerName": "International Long Distance Barring ALL",
+                          "prices": [
+                            {
+                              "key": "recurringFrequency",
+                              "value": "monthly"
+                            },
+                            {
+                              "key": "offerPrice",
+                              "value": "0.00"
+                            },
+                            {
+                              "key": "listPrice",
+                              "value": "0.00"
+                            }
+                          ],
+                          "offerCharacteristics": [
+                            {
+                              "key": "serviceOfferingCode",
+                              "value": "ILDBARSBP"
+                            },
+                            {
+                              "key": "category",
+                              "value": "International"
+                            },
+                            {
+                              "key": "taxTreatment",
+                              "value": "TAX_INCLUSIVE"
+                            }
+                          ],
+                          "description": "Prevents dialing to most international long distance numbers. You will still be able to place calls to destinations in Canada, Mexico, Puerto Rico, and the US Virgin Islands as well as the United States including Alaska and Hawaii."
+                        },
+                        {
+                          "offerId": "316075",
+                          "offerType": "SERVICE",
+                          "offerName": "Business Unlimited Ultimate 100GBHS",
+                          "prices": [
+                            {
+                              "key": "recurringFrequency",
+                              "value": "monthly"
+                            },
+                            {
+                              "key": "offerPrice",
+                              "value": "0.00"
+                            },
+                            {
+                              "key": "listPrice",
+                              "value": "0.00"
+                            }
+                          ],
+                          "offerCharacteristics": [
+                            {
+                              "key": "serviceOfferingCode",
+                              "value": "ZBSDTC100P"
+                            },
+                            {
+                              "key": "category",
+                              "value": "Data"
+                            },
+                            {
+                              "key": "taxTreatment",
+                              "value": "TAX_EXCLUSIVE"
+                            }
+                          ],
+                          "description": "With Business Unlimited Ultimate data you get Premium data on our network and 100 GB of high-speed mobile hotspot data (with unlimited 3G hotspot speeds thereafter).  Stream up to 4K UHD video on capable device when feature is activated, or video typically streams on device at DVD quality (480p). Capable device for 5G. Coverage not available in some areas."
+                        },
+                        {
+                          "offerId": "1010016",
+                          "offerType": "SERVICE",
+                          "offerName": "Netflix Standard with ads",
+                          "prices": [
+                            {
+                              "key": "recurringFrequency",
+                              "value": "monthly"
+                            },
+                            {
+                              "key": "offerPrice",
+                              "value": "6.99"
+                            },
+                            {
+                              "key": "listPrice",
+                              "value": "6.99"
+                            }
+                          ],
+                          "offerCharacteristics": [
+                            {
+                              "key": "serviceOfferingCode",
+                              "value": "ADSNFLX2P"
+                            },
+                            {
+                              "key": "category",
+                              "value": "Other"
+                            },
+                            {
+                              "key": "taxTreatment",
+                              "value": "TAX_INCLUSIVE"
+                            }
+                          ],
+                          "description": "Watch your favorite original content, movies & shows on 2 screens within your household with Netflix Standard with ads. Plus, you can download videos on a phone or tablet. It's Netflix On Us! If you're already on a plan with Netflix included, sign up for Netflix . Available while you maintain a qualifying rate plan in good standing. Alternative discount toward Netflix Standard or Netflix Premium plan may apply. Not redeemable or refundable for cash. Cancel Netflix anytime. Netflix Terms of Use apply One offer per T-Mobile account, may take 1-2 bill cycles. Like all plans, features may change or be discontinued at any time; see T-Mobile Terms and Conditions for details."
+                        }
+                      ]
+                    }
+                  },
+                  "AccessoryResponse": {
+                    "summary": "Accessory associated with device",
+                    "value": {
+                      "offers": [
+                        {
+                          "offerId": "305677",
+                          "offerType": "ACCESSORY",
+                          "offerName": "Apple 20W USB-C Power Adapter - White",
+                          "prices": [
+                            {
+                              "key": "recurringFrequency",
+                              "value": "one-time"
+                            },
+                            {
+                              "key": "offerPrice",
+                              "value": "19.99"
+                            },
+                            {
+                              "key": "listPrice",
+                              "value": "19.99"
+                            }
+                          ],
+                          "offerCharacteristics": [
+                            {
+                              "key": "stockKeepingUnit",
+                              "value": "194252156940"
+                            }
+                          ],
+                          "manufacturer": "Apple",
+                          "description": "The Apple 20W USB-C Power Adapter offers fast, efficient charging at home, in the office, or on the go. While the power adapter is compatible with any USB-C-enabled device, Apple recommends pairing it with the 11-inch iPad Pro and 12.9-inch iPad Pro (3rd generation) for optimal charging performance. You can also pair it with iPhone 8 or later to take advantage of the fast-charging feature.",
+                          "productImage": "/images/png/products/accessories/194252156940/194252156940-large.png"
+                        },
+                        {
+                          "offerId": "189185",
+                          "offerType": "ACCESSORY",
+                          "offerName": "SIM Starter Kit $20",
+                          "prices": [
+                            {
+                              "key": "recurringFrequency",
+                              "value": "one-time"
+                            },
+                            {
+                              "key": "offerPrice",
+                              "value": "20.00"
+                            },
+                            {
+                              "key": "listPrice",
+                              "value": "20.00"
+                            }
+                          ],
+                          "offerCharacteristics": [
+                            {
+                              "key": "stockKeepingUnit",
+                              "value": "TM6760V3"
+                            },
+                            {
+                              "key": "simStarterKit",
+                              "value": "true"
+                            }
+                          ],
+                          "manufacturer": "T-Mobile",
+                          "description": "• Your SIM Starter Kit includes your T-Mobile SIM card, which allows you to access T-Mobile's network Your kit also features information about how to make the most of your mobile experience—like how to set up your device, manage your account, and access services and discounts",
+                          "productImage": "/images/png/products/accessories/TM6760/TM6760.png"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Successful product retrieval",
+            "headers": {
+              "Date": {
+                "description": "Tue, 11 Sep 2018 20:42:21 GMT",
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 11 Sep 2018 20:42:21 GMT"
+                }
+              },
+              "ETag": {
+                "description": "Entity tag for the returned resource",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"e3a1b7f29d324b8b\""
+              },
+              "Content-Type": {
+                "description": "application/json;charset=UTF-8",
+                "schema": {
+                  "type": "string",
+                  "example": "application/json;charset=UTF-8"
+                }
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "example": "91"
+                }
+              },
+              "Cache-Control": {
+                "description": "whether cache control is defined",
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "service-transaction-id": {
+                "description": "unique id generated by server or echoed back by server if received in request",
+                "schema": {
+                  "type": "string",
+                  "example": "23409209723"
+                }
+              },
+              "B2b-RequestId": {
+                "description": "Unique id generated by server or echoed back by server if received in request.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "maxLength": 255,
+                  "pattern": "^[A-Za-z-1-90]{1,255}$",
+                  "example": "2af4ba4c-2a47-47dc-a265-5a1d70a06534"
+                }
+              },
+              "Strict-Transport-Security": {
+                "description": "max-age=31536000; includeSubDomains",
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "$ref": "#/components/examples/Error400Example"
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid request payload or business rule violation",
+            "headers": {
+              "Date": {
+                "description": "Tue, 11 Sep 2018 20:42:21 GMT",
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 11 Sep 2018 20:42:21 GMT"
+                }
+              },
+              "ETag": {
+                "description": "Entity tag for the returned resource",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"e3a1b7f29d324b8b\""
+              },
+              "Content-Type": {
+                "description": "application/json;charset=UTF-8",
+                "schema": {
+                  "type": "string",
+                  "example": "application/json;charset=UTF-8"
+                }
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "example": "91"
+                }
+              },
+              "Cache-Control": {
+                "description": "whether cache control is defined",
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "service-transaction-id": {
+                "description": "unique id generated by server or echoed back by server if received in request",
+                "schema": {
+                  "type": "string",
+                  "example": "23409209723"
+                }
+              },
+              "B2b-RequestId": {
+                "description": "Unique id generated by server or echoed back by server if received in request.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "maxLength": 255,
+                  "pattern": "^[A-Za-z-1-90]{1,255}$",
+                  "example": "2af4ba4c-2a47-47dc-a265-5a1d70a06534"
+                }
+              },
+              "Strict-Transport-Security": {
+                "description": "max-age=31536000; includeSubDomains",
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "$ref": "#/components/examples/Error401Example"
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized - Access token is missing or invalid",
+            "headers": {
+              "Date": {
+                "description": "Tue, 11 Sep 2018 20:42:21 GMT",
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 11 Sep 2018 20:42:21 GMT"
+                }
+              },
+              "ETag": {
+                "description": "Entity tag for the returned resource",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"e3a1b7f29d324b8b\""
+              },
+              "Content-Type": {
+                "description": "application/json;charset=UTF-8",
+                "schema": {
+                  "type": "string",
+                  "example": "application/json;charset=UTF-8"
+                }
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "example": "91"
+                }
+              },
+              "Cache-Control": {
+                "description": "whether cache control is defined",
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "service-transaction-id": {
+                "description": "unique id generated by server or echoed back by server if received in request",
+                "schema": {
+                  "type": "string",
+                  "example": "23409209723"
+                }
+              },
+              "B2b-RequestId": {
+                "description": "Unique id generated by server or echoed back by server if received in request.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "maxLength": 255,
+                  "pattern": "^[A-Za-z-1-90]{1,255}$",
+                  "example": "2af4ba4c-2a47-47dc-a265-5a1d70a06534"
+                }
+              },
+              "Strict-Transport-Security": {
+                "description": "max-age=31536000; includeSubDomains",
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "$ref": "#/components/examples/Error403Example"
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden - Caller does not have permission to access this resource",
+            "headers": {
+              "Date": {
+                "description": "Tue, 11 Sep 2018 20:42:21 GMT",
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 11 Sep 2018 20:42:21 GMT"
+                }
+              },
+              "ETag": {
+                "description": "Entity tag for the returned resource",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"e3a1b7f29d324b8b\""
+              },
+              "Content-Type": {
+                "description": "application/json;charset=UTF-8",
+                "schema": {
+                  "type": "string",
+                  "example": "application/json;charset=UTF-8"
+                }
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "example": "91"
+                }
+              },
+              "Cache-Control": {
+                "description": "whether cache control is defined",
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "service-transaction-id": {
+                "description": "unique id generated by server or echoed back by server if received in request",
+                "schema": {
+                  "type": "string",
+                  "example": "23409209723"
+                }
+              },
+              "B2b-RequestId": {
+                "description": "Unique id generated by server or echoed back by server if received in request.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "maxLength": 255,
+                  "pattern": "^[A-Za-z-1-90]{1,255}$",
+                  "example": "2af4ba4c-2a47-47dc-a265-5a1d70a06534"
+                }
+              },
+              "Strict-Transport-Security": {
+                "description": "max-age=31536000; includeSubDomains",
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "$ref": "#/components/examples/Error404Example"
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found - Resource could not be found",
+            "headers": {
+              "Date": {
+                "description": "Tue, 11 Sep 2018 20:42:21 GMT",
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 11 Sep 2018 20:42:21 GMT"
+                }
+              },
+              "ETag": {
+                "description": "Entity tag for the returned resource",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"e3a1b7f29d324b8b\""
+              },
+              "Content-Type": {
+                "description": "application/json;charset=UTF-8",
+                "schema": {
+                  "type": "string",
+                  "example": "application/json;charset=UTF-8"
+                }
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "example": "91"
+                }
+              },
+              "Cache-Control": {
+                "description": "whether cache control is defined",
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "service-transaction-id": {
+                "description": "unique id generated by server or echoed back by server if received in request",
+                "schema": {
+                  "type": "string",
+                  "example": "23409209723"
+                }
+              },
+              "B2b-RequestId": {
+                "description": "Unique id generated by server or echoed back by server if received in request.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "maxLength": 255,
+                  "pattern": "^[A-Za-z-1-90]{1,255}$",
+                  "example": "2af4ba4c-2a47-47dc-a265-5a1d70a06534"
+                }
+              },
+              "Strict-Transport-Security": {
+                "description": "max-age=31536000; includeSubDomains",
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "$ref": "#/components/examples/Error500Example"
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error - Unexpected server-side failure",
+            "headers": {
+              "Date": {
+                "description": "Tue, 11 Sep 2018 20:42:21 GMT",
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 11 Sep 2018 20:42:21 GMT"
+                }
+              },
+              "ETag": {
+                "description": "Entity tag for the returned resource",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"e3a1b7f29d324b8b\""
+              },
+              "Content-Type": {
+                "description": "application/json;charset=UTF-8",
+                "schema": {
+                  "type": "string",
+                  "example": "application/json;charset=UTF-8"
+                }
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "example": "91"
+                }
+              },
+              "Cache-Control": {
+                "description": "whether cache control is defined",
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "service-transaction-id": {
+                "description": "unique id generated by server or echoed back by server if received in request",
+                "schema": {
+                  "type": "string",
+                  "example": "23409209723"
+                }
+              },
+              "B2b-RequestId": {
+                "description": "Unique id generated by server or echoed back by server if received in request.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "maxLength": 255,
+                  "pattern": "^[A-Za-z-1-90]{1,255}$",
+                  "example": "2af4ba4c-2a47-47dc-a265-5a1d70a06534"
+                }
+              },
+              "Strict-Transport-Security": {
+                "description": "max-age=31536000; includeSubDomains",
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains"
+                }
+              }
+            }
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "$ref": "#/components/examples/Error503Example"
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable - The server is currently unable to handle the request",
+            "headers": {
+              "Date": {
+                "description": "Tue, 11 Sep 2018 20:42:21 GMT",
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 11 Sep 2018 20:42:21 GMT"
+                }
+              },
+              "ETag": {
+                "description": "Entity tag for the returned resource",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"e3a1b7f29d324b8b\""
+              },
+              "Content-Type": {
+                "description": "application/json;charset=UTF-8",
+                "schema": {
+                  "type": "string",
+                  "example": "application/json;charset=UTF-8"
+                }
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "example": "91"
+                }
+              },
+              "Cache-Control": {
+                "description": "whether cache control is defined",
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "service-transaction-id": {
+                "description": "unique id generated by server or echoed back by server if received in request",
+                "schema": {
+                  "type": "string",
+                  "example": "23409209723"
+                }
+              },
+              "B2b-RequestId": {
+                "description": "Unique id generated by server or echoed back by server if received in request.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "maxLength": 255,
+                  "pattern": "^[A-Za-z-1-90]{1,255}$",
+                  "example": "2af4ba4c-2a47-47dc-a265-5a1d70a06534"
+                }
+              },
+              "Strict-Transport-Security": {
+                "description": "max-age=31536000; includeSubDomains",
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ],
+        "description": "Accepts organization ID or Billing Account Number to retrieve products. Optionally filters by SKU list and includes compatibility metadata.",
+        "summary": "Products catalog",
+        "tags": ["ProductCatalog"],
+        "x-api-pattern": "ExecuteFunction"
+      }
+    },
+    "/shipping-charges": {
+      "post": {
+        "operationId": "shippingCharges",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Access-Control-Request-Headers"
+          },
+          {
+            "$ref": "#/components/parameters/Access-Control-Request-Method"
+          },
+          {
+            "$ref": "#/components/parameters/activity-id"
+          },
+          {
+            "$ref": "#/components/parameters/interaction-id"
+          },
+          {
+            "$ref": "#/components/parameters/service-transaction-id"
+          },
+          {
+            "$ref": "#/components/parameters/session-id"
+          },
+          {
+            "$ref": "#/components/parameters/channel-origin"
+          },
+          {
+            "$ref": "#/components/parameters/workflow-id"
+          },
+          {
+            "$ref": "#/components/parameters/x-auth-originator"
+          },
+          {
+            "$ref": "#/components/parameters/x-authorization"
+          }
+        ],
+        "requestBody": {
+          "description": "Shipping charges request payload",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShippingChargesRequest"
+              },
+              "examples": {
+                "shippingChargeRequest": {
+                  "summary": "Shipping charges",
+                  "value": {
+                    "billingAccountNumber": "887654329"
+                  },
+                  "x-exampleId": ["shippingCharges"]
+                },
+                "shippingChargeRequestWithWaiver": {
+                  "summary": "Shipping charges with waiver",
+                  "value": {
+                    "billingAccountNumber": "887654330"
+                  },
+                  "x-exampleId": ["shippingCharges"]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShippingChargesResponse"
+                },
+                "examples": {
+                  "shippingChargesResponse": {
+                    "summary": "Shipping charges",
+                    "value": {
+                      "shippingWaiver": false,
+                      "shippingCharges": [
+                        {
+                          "shippingType": "OVN",
+                          "shippingTypeDescription": "Overnight Shipping",
+                          "unitOfWeight": "lb",
+                          "scaleQuantity": 15,
+                          "charge": 25.99,
+                          "currency": "USD"
+                        },
+                        {
+                          "shippingType": "OVN",
+                          "shippingTypeDescription": "Overnight Shipping",
+                          "unitOfWeight": "lb",
+                          "scaleQuantity": 25,
+                          "charge": 35.99,
+                          "currency": "USD"
+                        },
+                        {
+                          "shippingType": "STN",
+                          "shippingTypeDescription": "Standard Shipping",
+                          "unitOfWeight": "lb",
+                          "scaleQuantity": 15,
+                          "charge": 19.99,
+                          "currency": "USD"
+                        },
+                        {
+                          "shippingType": "STN",
+                          "shippingTypeDescription": "Standard Shipping",
+                          "unitOfWeight": "lb",
+                          "scaleQuantity": 25,
+                          "charge": 29.99,
+                          "currency": "USD"
+                        }
+                      ]
+                    }
+                  },
+                  "shippingChargesResponseWithWaiver": {
+                    "summary": "Shipping charges with waiver",
+                    "value": {
+                      "shippingWaiver": true,
+                      "shippingCharges": [
+                        {
+                          "shippingType": "OVN",
+                          "shippingTypeDescription": "Overnight Shipping"
+                        },
+                        {
+                          "shippingType": "STN",
+                          "shippingTypeDescription": "Standard Shipping"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Successful Shipping charges retrieval",
+            "headers": {
+              "Date": {
+                "description": "Tue, 11 Sep 2018 20:42:21 GMT",
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 11 Sep 2018 20:42:21 GMT"
+                }
+              },
+              "ETag": {
+                "description": "Entity tag for the returned resource",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"e3a1b7f29d324b8b\""
+              },
+              "Content-Type": {
+                "description": "application/json;charset=UTF-8",
+                "schema": {
+                  "type": "string",
+                  "example": "application/json;charset=UTF-8"
+                }
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "example": "91"
+                }
+              },
+              "Cache-Control": {
+                "description": "whether cache control is defined",
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "service-transaction-id": {
+                "description": "unique id generated by server or echoed back by server if received in request",
+                "schema": {
+                  "type": "string",
+                  "example": "23409209723"
+                }
+              },
+              "B2b-RequestId": {
+                "description": "Unique id generated by server or echoed back by server if received in request.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "maxLength": 255,
+                  "pattern": "^[A-Za-z-1-90]{1,255}$",
+                  "example": "2af4ba4c-2a47-47dc-a265-5a1d70a06534"
+                }
+              },
+              "Strict-Transport-Security": {
+                "description": "max-age=31536000; includeSubDomains",
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "$ref": "#/components/examples/Error400Example"
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid request payload or business rule violation",
+            "headers": {
+              "Date": {
+                "description": "Tue, 11 Sep 2018 20:42:21 GMT",
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 11 Sep 2018 20:42:21 GMT"
+                }
+              },
+              "ETag": {
+                "description": "Entity tag for the returned resource",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"e3a1b7f29d324b8b\""
+              },
+              "Content-Type": {
+                "description": "application/json;charset=UTF-8",
+                "schema": {
+                  "type": "string",
+                  "example": "application/json;charset=UTF-8"
+                }
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "example": "91"
+                }
+              },
+              "Cache-Control": {
+                "description": "whether cache control is defined",
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "service-transaction-id": {
+                "description": "unique id generated by server or echoed back by server if received in request",
+                "schema": {
+                  "type": "string",
+                  "example": "23409209723"
+                }
+              },
+              "B2b-RequestId": {
+                "description": "Unique id generated by server or echoed back by server if received in request.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "maxLength": 255,
+                  "pattern": "^[A-Za-z-1-90]{1,255}$",
+                  "example": "2af4ba4c-2a47-47dc-a265-5a1d70a06534"
+                }
+              },
+              "Strict-Transport-Security": {
+                "description": "max-age=31536000; includeSubDomains",
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "$ref": "#/components/examples/Error401Example"
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized - Access token is missing or invalid",
+            "headers": {
+              "Date": {
+                "description": "Tue, 11 Sep 2018 20:42:21 GMT",
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 11 Sep 2018 20:42:21 GMT"
+                }
+              },
+              "ETag": {
+                "description": "Entity tag for the returned resource",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"e3a1b7f29d324b8b\""
+              },
+              "Content-Type": {
+                "description": "application/json;charset=UTF-8",
+                "schema": {
+                  "type": "string",
+                  "example": "application/json;charset=UTF-8"
+                }
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "example": "91"
+                }
+              },
+              "Cache-Control": {
+                "description": "whether cache control is defined",
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "service-transaction-id": {
+                "description": "unique id generated by server or echoed back by server if received in request",
+                "schema": {
+                  "type": "string",
+                  "example": "23409209723"
+                }
+              },
+              "B2b-RequestId": {
+                "description": "Unique id generated by server or echoed back by server if received in request.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "maxLength": 255,
+                  "pattern": "^[A-Za-z-1-90]{1,255}$",
+                  "example": "2af4ba4c-2a47-47dc-a265-5a1d70a06534"
+                }
+              },
+              "Strict-Transport-Security": {
+                "description": "max-age=31536000; includeSubDomains",
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "$ref": "#/components/examples/Error403Example"
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden - Caller does not have permission to access this resource",
+            "headers": {
+              "Date": {
+                "description": "Tue, 11 Sep 2018 20:42:21 GMT",
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 11 Sep 2018 20:42:21 GMT"
+                }
+              },
+              "ETag": {
+                "description": "Entity tag for the returned resource",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"e3a1b7f29d324b8b\""
+              },
+              "Content-Type": {
+                "description": "application/json;charset=UTF-8",
+                "schema": {
+                  "type": "string",
+                  "example": "application/json;charset=UTF-8"
+                }
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "example": "91"
+                }
+              },
+              "Cache-Control": {
+                "description": "whether cache control is defined",
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "service-transaction-id": {
+                "description": "unique id generated by server or echoed back by server if received in request",
+                "schema": {
+                  "type": "string",
+                  "example": "23409209723"
+                }
+              },
+              "B2b-RequestId": {
+                "description": "Unique id generated by server or echoed back by server if received in request.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "maxLength": 255,
+                  "pattern": "^[A-Za-z-1-90]{1,255}$",
+                  "example": "2af4ba4c-2a47-47dc-a265-5a1d70a06534"
+                }
+              },
+              "Strict-Transport-Security": {
+                "description": "max-age=31536000; includeSubDomains",
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "$ref": "#/components/examples/Error404Example"
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found - Resource could not be found",
+            "headers": {
+              "Date": {
+                "description": "Tue, 11 Sep 2018 20:42:21 GMT",
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 11 Sep 2018 20:42:21 GMT"
+                }
+              },
+              "ETag": {
+                "description": "Entity tag for the returned resource",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"e3a1b7f29d324b8b\""
+              },
+              "Content-Type": {
+                "description": "application/json;charset=UTF-8",
+                "schema": {
+                  "type": "string",
+                  "example": "application/json;charset=UTF-8"
+                }
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "example": "91"
+                }
+              },
+              "Cache-Control": {
+                "description": "whether cache control is defined",
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "service-transaction-id": {
+                "description": "unique id generated by server or echoed back by server if received in request",
+                "schema": {
+                  "type": "string",
+                  "example": "23409209723"
+                }
+              },
+              "B2b-RequestId": {
+                "description": "Unique id generated by server or echoed back by server if received in request.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "maxLength": 255,
+                  "pattern": "^[A-Za-z-1-90]{1,255}$",
+                  "example": "2af4ba4c-2a47-47dc-a265-5a1d70a06534"
+                }
+              },
+              "Strict-Transport-Security": {
+                "description": "max-age=31536000; includeSubDomains",
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "$ref": "#/components/examples/Error500Example"
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error - Unexpected server-side failure",
+            "headers": {
+              "Date": {
+                "description": "Tue, 11 Sep 2018 20:42:21 GMT",
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 11 Sep 2018 20:42:21 GMT"
+                }
+              },
+              "ETag": {
+                "description": "Entity tag for the returned resource",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"e3a1b7f29d324b8b\""
+              },
+              "Content-Type": {
+                "description": "application/json;charset=UTF-8",
+                "schema": {
+                  "type": "string",
+                  "example": "application/json;charset=UTF-8"
+                }
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "example": "91"
+                }
+              },
+              "Cache-Control": {
+                "description": "whether cache control is defined",
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "service-transaction-id": {
+                "description": "unique id generated by server or echoed back by server if received in request",
+                "schema": {
+                  "type": "string",
+                  "example": "23409209723"
+                }
+              },
+              "B2b-RequestId": {
+                "description": "Unique id generated by server or echoed back by server if received in request.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "maxLength": 255,
+                  "pattern": "^[A-Za-z-1-90]{1,255}$",
+                  "example": "2af4ba4c-2a47-47dc-a265-5a1d70a06534"
+                }
+              },
+              "Strict-Transport-Security": {
+                "description": "max-age=31536000; includeSubDomains",
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains"
+                }
+              }
+            }
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "$ref": "#/components/examples/Error503Example"
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable - The server is currently unable to handle the request",
+            "headers": {
+              "Date": {
+                "description": "Tue, 11 Sep 2018 20:42:21 GMT",
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 11 Sep 2018 20:42:21 GMT"
+                }
+              },
+              "ETag": {
+                "description": "Entity tag for the returned resource",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"e3a1b7f29d324b8b\""
+              },
+              "Content-Type": {
+                "description": "application/json;charset=UTF-8",
+                "schema": {
+                  "type": "string",
+                  "example": "application/json;charset=UTF-8"
+                }
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "example": "91"
+                }
+              },
+              "Cache-Control": {
+                "description": "whether cache control is defined",
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "service-transaction-id": {
+                "description": "unique id generated by server or echoed back by server if received in request",
+                "schema": {
+                  "type": "string",
+                  "example": "23409209723"
+                }
+              },
+              "B2b-RequestId": {
+                "description": "Unique id generated by server or echoed back by server if received in request.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "maxLength": 255,
+                  "pattern": "^[A-Za-z-1-90]{1,255}$",
+                  "example": "2af4ba4c-2a47-47dc-a265-5a1d70a06534"
+                }
+              },
+              "Strict-Transport-Security": {
+                "description": "max-age=31536000; includeSubDomains",
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ],
+        "description": "The shipping charges API provides real-time retrieval of default shipping methods, associated costs, and eligibility for shipping waivers. By delivering accurate and consistent shipping information, the API ensures clarity on fulfillment options before completing an order. It simplifies checkout by standardizing how shipping choices and costs are displayed.",
+        "summary": "Shipping charges",
+        "tags": ["Shipping"],
+        "x-api-pattern": "ExecuteFunction"
+      }
+    },
+    "/product-inventory": {
+      "post": {
+        "operationId": "productInventoryCheck",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Access-Control-Request-Headers"
+          },
+          {
+            "$ref": "#/components/parameters/Access-Control-Request-Method"
+          },
+          {
+            "$ref": "#/components/parameters/activity-id"
+          },
+          {
+            "$ref": "#/components/parameters/interaction-id"
+          },
+          {
+            "$ref": "#/components/parameters/service-transaction-id"
+          },
+          {
+            "$ref": "#/components/parameters/session-id"
+          },
+          {
+            "$ref": "#/components/parameters/channel-origin"
+          },
+          {
+            "$ref": "#/components/parameters/workflow-id"
+          },
+          {
+            "$ref": "#/components/parameters/x-auth-originator"
+          },
+          {
+            "$ref": "#/components/parameters/x-authorization"
+          }
+        ],
+        "requestBody": {
+          "description": "Product inventory check request payload",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductInventoryRequest"
+              },
+              "examples": {
+                "ProductInventoryRequest": {
+                  "summary": "Product inventory",
+                  "value": [
+                    {
+                      "stockKeepingUnit": "194252028094",
+                      "quantity": 10000000
+                    },
+                    {
+                      "stockKeepingUnit": "194252028099",
+                      "quantity": 100
+                    },
+                    {
+                      "stockKeepingUnit": "190198453457"
+                    }
+                  ],
+                  "x-exampleId": ["productInventory"]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductInventoryResponse"
+                },
+                "examples": {
+                  "ProductInventoryResponse": {
+                    "summary": "Product inventory",
+                    "value": [
+                      {
+                        "stockKeepingUnit": "194252028094",
+                        "status": "InStock",
+                        "quantity": 2443876,
+                        "estimatedShippingDateFrom": "2025-10-29",
+                        "estimatedShippingDateTo": "2025-11-03"
+                      },
+                      {
+                        "stockKeepingUnit": "194252028094",
+                        "status": "BackOrder",
+                        "quantity": 7556124,
+                        "estimatedShippingDateFrom": "2025-11-26",
+                        "estimatedShippingDateTo": "2025-12-10"
+                      },
+                      {
+                        "stockKeepingUnit": "194252028099",
+                        "status": "Out of Stock"
+                      },
+                      {
+                        "stockKeepingUnit": "190198453457",
+                        "status": "InStock",
+                        "quantity": 1,
+                        "estimatedShippingDateFrom": "2025-10-29",
+                        "estimatedShippingDateTo": "2025-11-03"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "description": "Successful product inventory retrieval",
+            "headers": {
+              "Date": {
+                "description": "Tue, 11 Sep 2018 20:42:21 GMT",
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 11 Sep 2018 20:42:21 GMT"
+                }
+              },
+              "ETag": {
+                "description": "Entity tag for the returned resource",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"e3a1b7f29d324b8b\""
+              },
+              "Content-Type": {
+                "description": "application/json;charset=UTF-8",
+                "schema": {
+                  "type": "string",
+                  "example": "application/json;charset=UTF-8"
+                }
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "example": "91"
+                }
+              },
+              "Cache-Control": {
+                "description": "whether cache control is defined",
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "service-transaction-id": {
+                "description": "unique id generated by server or echoed back by server if received in request",
+                "schema": {
+                  "type": "string",
+                  "example": "23409209723"
+                }
+              },
+              "B2b-RequestId": {
+                "description": "Unique id generated by server or echoed back by server if received in request.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "maxLength": 255,
+                  "pattern": "^[A-Za-z-1-90]{1,255}$",
+                  "example": "2af4ba4c-2a47-47dc-a265-5a1d70a06534"
+                }
+              },
+              "Strict-Transport-Security": {
+                "description": "max-age=31536000; includeSubDomains",
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "$ref": "#/components/examples/Error400ExampleInventory"
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid request payload or business rule violation",
+            "headers": {
+              "Date": {
+                "description": "Tue, 11 Sep 2018 20:42:21 GMT",
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 11 Sep 2018 20:42:21 GMT"
+                }
+              },
+              "ETag": {
+                "description": "Entity tag for the returned resource",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"e3a1b7f29d324b8b\""
+              },
+              "Content-Type": {
+                "description": "application/json;charset=UTF-8",
+                "schema": {
+                  "type": "string",
+                  "example": "application/json;charset=UTF-8"
+                }
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "example": "91"
+                }
+              },
+              "Cache-Control": {
+                "description": "whether cache control is defined",
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "service-transaction-id": {
+                "description": "unique id generated by server or echoed back by server if received in request",
+                "schema": {
+                  "type": "string",
+                  "example": "23409209723"
+                }
+              },
+              "B2b-RequestId": {
+                "description": "Unique id generated by server or echoed back by server if received in request.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "maxLength": 255,
+                  "pattern": "^[A-Za-z-1-90]{1,255}$",
+                  "example": "2af4ba4c-2a47-47dc-a265-5a1d70a06534"
+                }
+              },
+              "Strict-Transport-Security": {
+                "description": "max-age=31536000; includeSubDomains",
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "$ref": "#/components/examples/Error401Example"
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized - Access token is missing or invalid",
+            "headers": {
+              "Date": {
+                "description": "Tue, 11 Sep 2018 20:42:21 GMT",
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 11 Sep 2018 20:42:21 GMT"
+                }
+              },
+              "ETag": {
+                "description": "Entity tag for the returned resource",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"e3a1b7f29d324b8b\""
+              },
+              "Content-Type": {
+                "description": "application/json;charset=UTF-8",
+                "schema": {
+                  "type": "string",
+                  "example": "application/json;charset=UTF-8"
+                }
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "example": "91"
+                }
+              },
+              "Cache-Control": {
+                "description": "whether cache control is defined",
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "service-transaction-id": {
+                "description": "unique id generated by server or echoed back by server if received in request",
+                "schema": {
+                  "type": "string",
+                  "example": "23409209723"
+                }
+              },
+              "B2b-RequestId": {
+                "description": "Unique id generated by server or echoed back by server if received in request.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "maxLength": 255,
+                  "pattern": "^[A-Za-z-1-90]{1,255}$",
+                  "example": "2af4ba4c-2a47-47dc-a265-5a1d70a06534"
+                }
+              },
+              "Strict-Transport-Security": {
+                "description": "max-age=31536000; includeSubDomains",
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "$ref": "#/components/examples/Error403Example"
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden - Caller does not have permission to access this resource",
+            "headers": {
+              "Date": {
+                "description": "Tue, 11 Sep 2018 20:42:21 GMT",
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 11 Sep 2018 20:42:21 GMT"
+                }
+              },
+              "ETag": {
+                "description": "Entity tag for the returned resource",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"e3a1b7f29d324b8b\""
+              },
+              "Content-Type": {
+                "description": "application/json;charset=UTF-8",
+                "schema": {
+                  "type": "string",
+                  "example": "application/json;charset=UTF-8"
+                }
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "example": "91"
+                }
+              },
+              "Cache-Control": {
+                "description": "whether cache control is defined",
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "service-transaction-id": {
+                "description": "unique id generated by server or echoed back by server if received in request",
+                "schema": {
+                  "type": "string",
+                  "example": "23409209723"
+                }
+              },
+              "B2b-RequestId": {
+                "description": "Unique id generated by server or echoed back by server if received in request.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "maxLength": 255,
+                  "pattern": "^[A-Za-z-1-90]{1,255}$",
+                  "example": "2af4ba4c-2a47-47dc-a265-5a1d70a06534"
+                }
+              },
+              "Strict-Transport-Security": {
+                "description": "max-age=31536000; includeSubDomains",
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "$ref": "#/components/examples/Error404Example"
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found - Resource could not be found",
+            "headers": {
+              "Date": {
+                "description": "Tue, 11 Sep 2018 20:42:21 GMT",
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 11 Sep 2018 20:42:21 GMT"
+                }
+              },
+              "ETag": {
+                "description": "Entity tag for the returned resource",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"e3a1b7f29d324b8b\""
+              },
+              "Content-Type": {
+                "description": "application/json;charset=UTF-8",
+                "schema": {
+                  "type": "string",
+                  "example": "application/json;charset=UTF-8"
+                }
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "example": "91"
+                }
+              },
+              "Cache-Control": {
+                "description": "whether cache control is defined",
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "service-transaction-id": {
+                "description": "unique id generated by server or echoed back by server if received in request",
+                "schema": {
+                  "type": "string",
+                  "example": "23409209723"
+                }
+              },
+              "B2b-RequestId": {
+                "description": "Unique id generated by server or echoed back by server if received in request.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "maxLength": 255,
+                  "pattern": "^[A-Za-z-1-90]{1,255}$",
+                  "example": "2af4ba4c-2a47-47dc-a265-5a1d70a06534"
+                }
+              },
+              "Strict-Transport-Security": {
+                "description": "max-age=31536000; includeSubDomains",
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "$ref": "#/components/examples/Error500Example"
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error - Unexpected server-side failure",
+            "headers": {
+              "Date": {
+                "description": "Tue, 11 Sep 2018 20:42:21 GMT",
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 11 Sep 2018 20:42:21 GMT"
+                }
+              },
+              "ETag": {
+                "description": "Entity tag for the returned resource",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"e3a1b7f29d324b8b\""
+              },
+              "Content-Type": {
+                "description": "application/json;charset=UTF-8",
+                "schema": {
+                  "type": "string",
+                  "example": "application/json;charset=UTF-8"
+                }
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "example": "91"
+                }
+              },
+              "Cache-Control": {
+                "description": "whether cache control is defined",
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "service-transaction-id": {
+                "description": "unique id generated by server or echoed back by server if received in request",
+                "schema": {
+                  "type": "string",
+                  "example": "23409209723"
+                }
+              },
+              "B2b-RequestId": {
+                "description": "Unique id generated by server or echoed back by server if received in request.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "maxLength": 255,
+                  "pattern": "^[A-Za-z-1-90]{1,255}$",
+                  "example": "2af4ba4c-2a47-47dc-a265-5a1d70a06534"
+                }
+              },
+              "Strict-Transport-Security": {
+                "description": "max-age=31536000; includeSubDomains",
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains"
+                }
+              }
+            }
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "$ref": "#/components/examples/Error503Example"
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable - The server is currently unable to handle the request",
+            "headers": {
+              "Date": {
+                "description": "Tue, 11 Sep 2018 20:42:21 GMT",
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 11 Sep 2018 20:42:21 GMT"
+                }
+              },
+              "ETag": {
+                "description": "Entity tag for the returned resource",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"e3a1b7f29d324b8b\""
+              },
+              "Content-Type": {
+                "description": "application/json;charset=UTF-8",
+                "schema": {
+                  "type": "string",
+                  "example": "application/json;charset=UTF-8"
+                }
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "example": "91"
+                }
+              },
+              "Cache-Control": {
+                "description": "whether cache control is defined",
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "service-transaction-id": {
+                "description": "unique id generated by server or echoed back by server if received in request",
+                "schema": {
+                  "type": "string",
+                  "example": "23409209723"
+                }
+              },
+              "B2b-RequestId": {
+                "description": "Unique id generated by server or echoed back by server if received in request.",
+                "schema": {
+                  "type": "string",
+                  "format": "string",
+                  "maxLength": 255,
+                  "pattern": "^[A-Za-z-1-90]{1,255}$",
+                  "example": "2af4ba4c-2a47-47dc-a265-5a1d70a06534"
+                }
+              },
+              "Strict-Transport-Security": {
+                "description": "max-age=31536000; includeSubDomains",
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ],
+        "description": "Retrieves real-time inventory availability and estimated shipping details for one or more products across specified warehouse or distribution center locations.This API allows clients to submit a list of product SKUs with optional quantity and location information, and receive detailed inventory responses including stock status, available quantities, fulfillment location, and estimated shipping date range.It supports bulk inventory checks, enabling partners or internal systems to efficiently determine product availability before placing orders or reserving stock.",
+        "summary": "Product inventory check",
+        "tags": ["Inventory"],
+        "x-api-pattern": "ExecuteFunction"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://adn.t-mobile.com/partner-interactions/catalog/v1",
+      "description": "Base Endpoint"
+    }
+  ],
+  "components": {
+    "examples": {
+      "Error400Example": {
+        "summary": "response",
+        "value": {
+          "error": [
+            {
+              "code": "PIL_4000001",
+              "userMessage": "Missing Attribute: Account Number",
+              "systemMessage": "Bad Request",
+              "detailLink": "https://t-mobile.com"
+            },
+            {
+              "code": "PIL_4000002",
+              "userMessage": "The provided details do not exist. Please validate and re-submit",
+              "systemMessage": "Bad Request",
+              "detailLink": "https://t-mobile.com"
+            }
+          ]
+        }
+      },
+      "Error400ExampleInventory": {
+        "summary": "response",
+        "value": {
+          "error": [
+            {
+              "code": "PIL_4000001",
+              "userMessage": "Missing Attribute: stockKeepingUnit",
+              "systemMessage": "Bad Request",
+              "detailLink": "https://t-mobile.com"
+            }
+          ]
+        }
+      },
+      "Error401Example": {
+        "summary": "response",
+        "value": {
+          "error": [
+            {
+              "code": "{error_code}",
+              "userMessage": "Authentication required. Please provide a valid token",
+              "systemMessage": "Unauthorized",
+              "detailLink": "https://t-mobile.com"
+            }
+          ]
+        }
+      },
+      "Error403Example": {
+        "summary": "response",
+        "value": {
+          "error": [
+            {
+              "code": "{error_code}",
+              "userMessage": "Access denied based on API permissions.",
+              "systemMessage": "Forbidden",
+              "detailLink": "https://t-mobile.com"
+            }
+          ]
+        }
+      },
+      "Error404Example": {
+        "summary": "response",
+        "value": {
+          "error": [
+            {
+              "code": "{error_code}",
+              "userMessage": "No resource found with the given details.",
+              "systemMessage": "NotFound",
+              "detailLink": "https://t-mobile.com"
+            }
+          ]
+        }
+      },
+      "Error405Example": {
+        "summary": "response",
+        "value": {
+          "error": [
+            {
+              "code": "{error_code}",
+              "userMessage": "The HTTP method used is not supported for this endpoint.",
+              "systemMessage": "Method Not Allowed",
+              "detailLink": "https://t-mobile.com"
+            }
+          ]
+        }
+      },
+      "Error409Example": {
+        "summary": "response",
+        "value": {
+          "error": [
+            {
+              "code": "{error_code}",
+              "userMessage": "The requested action could not be completed due to a conflict.",
+              "systemMessage": "Resource conflict",
+              "detailLink": "https://t-mobile.com"
+            }
+          ]
+        }
+      },
+      "Error500Example": {
+        "summary": "response",
+        "value": {
+          "error": [
+            {
+              "code": "{error_code}",
+              "userMessage": "Internal Server Error, please try again later.",
+              "systemMessage": "Internal Server Error",
+              "detailLink": "https://t-mobile.com"
+            }
+          ]
+        }
+      },
+      "Error503Example": {
+        "summary": "response",
+        "value": {
+          "error": [
+            {
+              "code": "{error_code}",
+              "userMessage": "Service Unavailable, please try again later.",
+              "systemMessage": "Service Unavailable",
+              "detailLink": "https://t-mobile.com"
+            }
+          ]
+        }
+      }
+    },
+    "schemas": {
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["code"],
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "description": "Error code relevant to the issue",
+                  "maxLength": 255,
+                  "minLength": 1,
+                  "pattern": "[\\S]*$"
+                },
+                "userMessage": {
+                  "type": "string",
+                  "description": "Specific error message for individual issue",
+                  "maxLength": 255,
+                  "minLength": 1,
+                  "pattern": "[\\S ]+$"
+                },
+                "systemMessage": {
+                  "type": "string",
+                  "description": "Short user-friendly message describing the error",
+                  "maxLength": 255,
+                  "minLength": 1,
+                  "pattern": "[\\S ]+$"
+                },
+                "detailLink": {
+                  "type": "string",
+                  "maxLength": 255,
+                  "minLength": 1,
+                  "pattern": "[\\S ]+$"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ProductRequest": {
+        "type": "object",
+        "required": ["billingAccountNumber", "offerType"],
+        "properties": {
+          "organizationId": {
+            "type": "string",
+            "description": "Unique identifier for the organization making the request. Used to scope catalog results to a specific organization.",
+            "minLength": 1,
+            "maxLength": 256,
+            "pattern": "^[0-9]+$"
+          },
+          "billingAccountNumber": {
+            "type": "string",
+            "description": "The 9-digit T-Mobile billing account number used to identify the customer account. Required for all catalog queries.",
+            "minLength": 9,
+            "maxLength": 9,
+            "pattern": "^[0-9]{9}$"
+          },
+          "offerType": {
+            "type": "string",
+            "enum": ["DEVICE", "ACCESSORY", "PLAN", "SERVICE"],
+            "description": "Type of product being queried. Acceptable values: DEVICE, ACCESSORY, PLAN, SERVICE."
+          },
+          "deviceOfferIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of one or more unique device offer IDs to filter catalog results. Used when retrieving plans or services compatible with specified devices.\n\n Note: Currently one item is supported."
+          },
+          "planOfferIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of one or more unique rate plan offer IDs to filter catalog results. Used when retrieving devices or services compatible with specified rate plans.\n\n Note: Currently one item is supported."
+          },
+          "pagination": {
+            "type": "object",
+            "properties": {
+              "offset": {
+                "type": "integer",
+                "description": "The starting page number for paginated results. Default is 1.",
+                "default": 1,
+                "example": 1
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Maximum number of records to return per page. Default is 100.",
+                "default": 100,
+                "example": 100
+              }
+            }
+          }
+        }
+      },
+      "ProductResponse": {
+        "type": "object",
+        "properties": {
+          "offers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "offerId": {
+                  "type": "string",
+                  "example": "197188",
+                  "description": "Unique identifier assigned to the catalog offer."
+                },
+                "offerType": {
+                  "type": "string",
+                  "example": "PLAN",
+                  "enum": ["DEVICE", "ACCESSORY", "PLAN", "SERVICE"],
+                  "description": "The category of the offer (DEVICE, PLAN, SERVICE, or ACCESSORY)."
+                },
+                "offerName": {
+                  "type": "string",
+                  "example": "T4B Mobile Internet 6GB",
+                  "description": "The name of the offer as marketed to customers."
+                },
+                "prices": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "string",
+                        "example": "offerPrice"
+                      },
+                      "value": {
+                        "type": "string",
+                        "example": "135.00"
+                      }
+                    }
+                  },
+                  "description": "Array of price-related attributes for the offer. Only applicable key/value pairs are returned. If a price attribute is not relevant, it will not appear in the response.\n\n### Supported Keys\n\nKey | Possible Values | Description\n--- | ---------------- | -----------\n`recurringFrequency` | one-time / monthly / annual | Indicates whether the charge is one-time or recurring, and the frequency if recurring\n`offerPrice` | Decimal (e.g., 399.99) | The current price being offered to the customer\n`listPrice` | Decimal (e.g., 499.99) | The standard or original price before discounts or promotions\n"
+                },
+                "eip": {
+                  "type": "array",
+                  "description": "Details of an Equipment Installment Plan (EIP) for the offer. Only applicable if the product is eligible for installment financing.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "minInstallment": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 20.99,
+                        "description": "Minimum installment amount eligible for the plan."
+                      },
+                      "salePrice": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 399.99,
+                        "description": "Total sale price of the device or accessory."
+                      },
+                      "downPayment": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 10.99,
+                        "description": "Amount required upfront at the time of purchase."
+                      },
+                      "numInstallment": {
+                        "type": "number",
+                        "example": 24,
+                        "description": "Number of installments in the plan."
+                      },
+                      "monthlyInstallment": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 16.2,
+                        "description": "Recurring monthly installment payment amount."
+                      }
+                    }
+                  }
+                },
+                "offerCharacteristics": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "string",
+                        "example": "planType"
+                      },
+                      "value": {
+                        "type": "string",
+                        "example": "Value"
+                      }
+                    }
+                  },
+                  "description": "Array of additional characteristics of the offer. Only applicable key with true value pairs are returned.\n\n### Supported Keys by Offer Type\n\n#### Device\nKey | Possible Values | Description\n--- | ---------------- | -----------\n`stockKeepingUnit` | SKU  | Device identifier\n`sim` | true / false | Indicates if SIM \n`preOrder` | true / false | Indicates if device can be pre ordered \n`simType` | eSIM/pSIM/peSIM(pSIM+eSIM)| Indicates type of sim supported for device \n\n#### Accessory\nKey | Possible Values | Description\n--- | ---------------- | -----------\n`stockKeepingUnit` | SKU  | Accessory identifier\n`simStarterKit` | true / false | Indicates if SIM starter kit\n\n#### Rate Plan\nKey | Possible Values | Description\n--- | ---------------- | -----------\n`serviceOfferingCode` | SOC | Service offering identifier\n`planType` | Value / Classic | Type of plan\n`autoPayEligible` | true / false | Eligible for AutoPay\n`mobileBroadband` | true / false | Mobile broadband plan\n`poolingPlan` | true / false | Indicates if plan supports pooling\n`poolingPlanServiceOfferingCode` | SOC | Associated pooling plan identifier(Base pooling plan)\n`poolingPlanMaxLines` | Integer (e.g., 100) | Maximum lines allowed in pooling plan\n`poolingPlanMinLines` | Integer (e.g., 10) | Minimum lines required in pooling plan\n`taxTreatment` | TAX_INCLUSIVE / TAX_EXCLUSIVE | Tax treatment applied\n`addALine` | true / false | Indicates if plan supports add-a-line\n`subsidyPlan` | true / false | Indicates if plan is subsidy-based\n\n#### Service\nKey | Possible Values | Description\n--- | ---------------- | -----------\n`serviceOfferingCode` | SOC | Service offering identifier\n`category` | Data, International , Other | Category of the service\n`taxTreatment` | TAX_INCLUSIVE / TAX_EXCLUSIVE | Tax treatment applied"
+                },
+                "manufacturer": {
+                  "type": "string",
+                  "example": "T-Mobile",
+                  "description": "Brand or manufacturer of the device or accessory, if applicable."
+                },
+                "description": {
+                  "type": "string",
+                  "example": "This plan includes: \u2022 The price you see is the price you pay. Taxes and fees included. \u2022 High-speed data in the U.S. - plus use up to 5GB of your high-speed data in Canada and Mexico at no extra charge. \u2022 Up to 6 GB of monthly high-speed mobile internet access. Speeds slowed to up to 2G speeds after 6 GB. \u2022 No annual service contract. No overages. \u2022 Video typically streams on smartphone or tablet at DVD quality (480p). \u2022 Unlimited international web at up to 128kbps while roaming in 210+ countries and destinations. \u2022 Tethering at max 3G speeds. On all T-Mobile plans during congestion the small fraction of customers using >50GB/mo. may notice reduced speeds until next bill cycle due to data prioritization. \u2022 Plans do not include data stash, music freedom, or binge on.\n",
+                  "description": "Marketing or technical description of the offer, which may include features, terms, and limitations."
+                },
+                "productImage": {
+                  "type": "string",
+                  "example": "/images/png/products/internet-devices/Cradlepoint-E320-5G-Router-Black/250x270_1.png",
+                  "description": "URL path to a representative product image."
+                },
+                "compatibleDevices": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Specifies the list of device identifiers with which this product is functionally compatible. Commonly used for accessories, services, or plans to ensure they can be correctly paired with eligible devices in the T-Mobile ecosystem.Reserved for future use."
+                },
+                "compatiblePlans": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Specifies the list of rate plan identifiers that are valid and compatible with this product. Typically applied to devices or services to confirm eligibility and seamless integration with approved T-Mobile rate plans.Reserved for future use."
+                }
+              }
+            }
+          },
+          "pagination": {
+            "type": "object",
+            "properties": {
+              "offset": {
+                "type": "integer",
+                "description": "The page number of the current response.",
+                "default": 1,
+                "example": 1
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Number of results returned per page.",
+                "default": 100,
+                "example": 100
+              },
+              "total": {
+                "type": "integer",
+                "description": "Total number of offers matching the query.",
+                "example": 500
+              }
+            }
+          }
+        }
+      },
+      "ShippingChargesRequest": {
+        "type": "object",
+        "required": ["billingAccountNumber"],
+        "properties": {
+          "organizationId": {
+            "type": "string",
+            "description": "A unique identifier assigned to a top-level business account or enterprise customer within T-Mobile systems.",
+            "minLength": 1,
+            "maxLength": 25,
+            "pattern": "^[0-9]+$",
+            "example": "7000000000001016610"
+          },
+          "billingAccountNumber": {
+            "type": "string",
+            "description": "The 9-digit T-Mobile billing account number used to identify the customer account.",
+            "minLength": 9,
+            "maxLength": 9,
+            "pattern": "^[0-9]{9}$",
+            "example": "987654321"
+          }
+        }
+      },
+      "ShippingChargesResponse": {
+        "type": "object",
+        "description": "Response containing shipping charges and any applicable waivers.",
+        "properties": {
+          "shippingWaiver": {
+            "type": "boolean",
+            "description": "Indicates whether shipping charges are waived (true = free shipping, false = charges apply).",
+            "example": true
+          },
+          "shippingCharges": {
+            "type": "array",
+            "description": "A list of shipping charges, where each object defines the cost of a given shipping service for a specified weight threshold, unit of measure, and currency.",
+            "items": {
+              "type": "object",
+              "description": "Shipping charge details.",
+              "properties": {
+                "shippingType": {
+                  "type": "string",
+                  "description": "Shipping service code that uniquely identifies the shipping method (e.g., OVN(Overnight Shipping), STN(Standard Shipping)).",
+                  "example": "OVN",
+                  "minLength": 1,
+                  "maxLength": 32,
+                  "pattern": "^[A-Z0-9_-]+$"
+                },
+                "shippingTypeDescription": {
+                  "type": "string",
+                  "description": "Human-readable description of the shipping type, suitable for display in user interfaces or invoices.(e.g., Overnight Shipping , Standard Shipping",
+                  "example": "Overnight Shipping",
+                  "minLength": 1,
+                  "maxLength": 256
+                },
+                "unitOfWeight": {
+                  "type": "string",
+                  "description": "Unit of measure used for the weight threshold (scaleQuantity).",
+                  "enum": ["lb", "oz", "kg", "g"],
+                  "example": "oz"
+                },
+                "scaleQuantity": {
+                  "type": "number",
+                  "format": "double",
+                  "description": "Maximum package weight covered by this charge tier, expressed in the given unit.",
+                  "minimum": 0,
+                  "example": 13
+                },
+                "charge": {
+                  "type": "number",
+                  "format": "double",
+                  "description": "Charge amount for shipping in the specified currency.",
+                  "minimum": 0,
+                  "example": 23.99
+                },
+                "currency": {
+                  "type": "string",
+                  "description": "Three-letter ISO 4217 currency code representing the charge’s currency.",
+                  "minLength": 3,
+                  "maxLength": 3,
+                  "pattern": "^[A-Z]{3}$",
+                  "example": "USD"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ProductInventoryRequest": {
+        "type": "array",
+        "description": "Represents a list of product inventory requests within the United States, where each item specifies the SKU, quantity for which inventory availability needs to be checked. Inventory information is provided only for locations supported within the U.S. region.",
+        "items": {
+          "type": "object",
+          "required": ["stockKeepingUnit"],
+          "properties": {
+            "stockKeepingUnit": {
+              "type": "string",
+              "description": "Unique product identifier such as SKU or material number used to query or report inventory.",
+              "minLength": 1,
+              "maxLength": 64,
+              "pattern": "^[A-Za-z0-9\\-]+$",
+              "example": "610214669193P"
+            },
+            "quantity": {
+              "type": "integer",
+              "description": "Number of units requested for the specified SKU",
+              "minimum": 1,
+              "maximum": 1000000,
+              "example": 100,
+              "default": 1
+            }
+          }
+        }
+      },
+      "ProductInventoryResponse": {
+        "type": "array",
+        "description": "Provides detailed inventory information corresponding to each requested product SKU, including availability status, available quantity, and estimated shipping dates.",
+        "items": {
+          "type": "object",
+          "properties": {
+            "stockKeepingUnit": {
+              "type": "string",
+              "description": "Unique product identifier such as SKU or material number used to query or report inventory.",
+              "minLength": 1,
+              "maxLength": 64,
+              "pattern": "^[A-Za-z0-9\\-]+$",
+              "example": "610214669193P"
+            },
+            "status": {
+              "type": "string",
+              "description": "Indicates the current stock availability for the product —  InStock, Out of Stock, or BackOrder",
+              "example": "InStock"
+            },
+            "quantity": {
+              "type": "integer",
+              "description": "Quantity available in inventory",
+              "minimum": 0,
+              "maximum": 1000000,
+              "example": 100
+            },
+            "estimatedShippingDateFrom": {
+              "type": "string",
+              "description": "The earliest estimated date (in UTC format) when the product is expected to be shipped. This represents the start of the estimated shipping window.",
+              "format": "date",
+              "example": "2024-10-01"
+            },
+            "estimatedShippingDateTo": {
+              "type": "string",
+              "description": "The latest estimated date (in UTC format) by which the product is expected to be shipped . This represents the end of the estimated shipping window.",
+              "format": "date",
+              "example": "2024-10-08"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "OAuth2": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://auth.t-mobile.com/oauth/authorize",
+            "tokenUrl": "https://auth.t-mobile.com/oauth/token",
+            "scopes": {
+              "read": "Read access",
+              "write": "Write access"
+            }
+          }
+        },
+        "x-scheme": "bearer",
+        "x-bearerFormat": "JWT"
+      }
+    },
+    "requestBodies": {},
+    "headers": {},
+    "responses": {},
+    "parameters": {
+      "Access-Control-Request-Headers": {
+        "description": "Used in CORS pre-flight requests to list custom headers the actual request will include.",
+        "example": "Authorization, Content-Type",
+        "in": "header",
+        "name": "Access-Control-Request-Headers",
+        "required": true,
+        "schema": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "pattern": "^[\\S ]*$",
+          "type": "string"
+        }
+      },
+      "Access-Control-Request-Method": {
+        "description": "Used in CORS pre-flight (browser) requests to indicate the HTTP method of the actual request. For example, POST. (Typically handled by browsers automatically and not used in direct API calls.)",
+        "example": "POST",
+        "in": "header",
+        "name": "Access-Control-Request-Method",
+        "required": false,
+        "schema": {
+          "enum": [
+            "GET",
+            "HEAD",
+            "POST",
+            "PUT",
+            "DELETE",
+            "CONNECT",
+            "OPTIONS",
+            "TRACE"
+          ],
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[\\S]*$",
+          "type": "string"
+        }
+      },
+      "activity-id": {
+        "description": "A unique identifier for the request, generated to track the service request. This is used for tracing a specific API call.",
+        "example": "c34e7acd-384b-4c22-8b02-ba3963682508",
+        "in": "header",
+        "name": "activity-id",
+        "required": false,
+        "schema": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[\\S]*$",
+          "type": "string"
+        }
+      },
+      "interaction-id": {
+        "description": "An identifier to group a series of related calls as part of a single user interaction or business activity. For instance, multiple API calls triggered by one user action share the same interaction-id.",
+        "example": "cc688d54-50d1-49d4-8c5d-95459d1172e8",
+        "in": "header",
+        "name": "interaction-id",
+        "required": true,
+        "schema": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[\\S]*$",
+          "type": "string"
+        }
+      },
+      "service-transaction-id": {
+        "description": "A request ID that, if provided, will be echoed back by the server in responses. This can be used to match requests with responses. If not provided, the server generates the service-request-id.",
+        "example": "23409209723",
+        "in": "header",
+        "name": "service-transaction-id",
+        "required": false,
+        "schema": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[\\S]*$",
+          "type": "string"
+        }
+      },
+      "session-id": {
+        "description": "A token to track a series of transactions in a session. This might represent a user\u2019s session or any logical grouping of requests.",
+        "example": "350b91ec-4a64-4b10-a3f3-a78c8db3924a",
+        "in": "header",
+        "name": "session-id",
+        "required": false,
+        "schema": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[\\S]*$",
+          "type": "string"
+        }
+      },
+      "workflow-id": {
+        "description": "Indicates the business use case or workflow type for the request. For example, ACTIVATION or another keyword identifying the type of operation.",
+        "example": "ACTIVATION",
+        "in": "header",
+        "name": "workflow-id",
+        "required": false,
+        "schema": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[\\S]*$",
+          "type": "string"
+        }
+      },
+      "x-auth-originator": {
+        "description": "(Originator-Auth-Token) - A JWT access token representing the original caller in a chain of API calls. Used when one service calls this API on behalf of an end-user or another service. This helps preserve the identity of the originator.",
+        "example": "c34e7acd-384b-4c22-8b02-ba3963682508",
+        "in": "header",
+        "name": "x-auth-originator",
+        "required": true,
+        "schema": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "pattern": "^[\\S]*$",
+          "type": "string"
+        }
+      },
+      "channel-origin": {
+        "description": "Identifies the source platform or channel through which the order was placed. Used for reporting, auditing, and engagement analysis.",
+        "example": "ServiceNow",
+        "in": "header",
+        "name": "channel-origin",
+        "required": false,
+        "schema": {
+          "maxLength": 15,
+          "minLength": 1,
+          "pattern": "^[\\S]*$",
+          "type": "string"
+        }
+      },
+      "x-authorization": {
+        "description": "(Proof-of-Possession Token) \u2013 A security token proving the caller\u2019s authorization, typically a Proof-of-Possession token or OAuth access token. This header carries the token that authenticates the API caller\u2019s identity and permissions.",
+        "in": "header",
+        "name": "x-authorization",
+        "required": true,
+        "schema": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "pattern": "^[\\S ]*$",
+          "type": "string"
+        }
+      },
+      "timestamp": {
+        "name": "timestamp",
+        "in": "header",
+        "description": "ms since 1/1/70 adjusted to GMT",
+        "required": false,
+        "example": 1524599536,
+        "schema": {
+          "type": "integer",
+          "maximum": 999999999999,
+          "minimum": 0,
+          "pattern": "^[\\\\\\\\d]*$",
+          "format": "int64"
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "OAuth2": ["read"]
+    }
+  ]
+}

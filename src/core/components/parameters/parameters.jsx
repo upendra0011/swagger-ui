@@ -161,7 +161,8 @@ export default class Parameters extends Component {
               <h4 className="opblock-title">Parameters</h4>
             </div>
           )}
-          {allowTryItOut ? (
+          {/* Check both allowTryItOut and showTryItOut config */}
+          {allowTryItOut && getConfigs().showTryItOut !== false ? (
             <TryItOutButton
               isOAS3={specSelectors.isOAS3()}
               hasUserEditedBody={oas3Selectors.hasUserEditedBody(...pathMethod)}

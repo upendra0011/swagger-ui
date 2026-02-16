@@ -58,6 +58,7 @@ import VersionStamp from "core/components/version-stamp"
 import OpenAPIVersion from "core/components/openapi-version"
 import DeepLink from "core/components/deep-link"
 import SvgAssets from "core/components/svg-assets"
+import MethodColors from "core/components/method-colors"
 import Markdown from "core/components/providers/markdown"
 import BaseLayout from "core/components/layouts/base"
 
@@ -121,6 +122,7 @@ const CoreComponentsPlugin = () => ({
     OpenAPIVersion,
     DeepLink,
     SvgAssets,
+    MethodColors,
     Example,
     ExamplesSelect,
     ExamplesSelectValueRetainer,

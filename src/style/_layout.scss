@@ -361,31 +361,31 @@
   }
 
   &.opblock-post {
-    @include mixins.method($color-post);
+    @include mixins.method($color-post, "post");
   }
 
   &.opblock-put {
-    @include mixins.method($color-put);
+    @include mixins.method($color-put, "put");
   }
 
   &.opblock-delete {
-    @include mixins.method($color-delete);
+    @include mixins.method($color-delete, "delete");
   }
 
   &.opblock-get {
-    @include mixins.method($color-get);
+    @include mixins.method($color-get, "get");
   }
 
   &.opblock-patch {
-    @include mixins.method($color-patch);
+    @include mixins.method($color-patch, "patch");
   }
 
   &.opblock-head {
-    @include mixins.method($color-head);
+    @include mixins.method($color-head, "head");
   }
 
   &.opblock-options {
-    @include mixins.method($color-options);
+    @include mixins.method($color-options, "options");
   }
 
   &.opblock-deprecated {

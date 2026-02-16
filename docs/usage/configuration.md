@@ -228,6 +228,17 @@ Parameter name | Docker variable | Description
     </tr>
     <tr>
         <td>
+            <a name="user-content-methodcolors"></a><code>methodColors</code>
+        </td>
+        <td><em>Unavailable</em></td>
+        <td><code>Object</code>. Customize the colors for HTTP method operation blocks.
+            Accepts an object with method names as keys (get, post, put, delete, head, patch, options)
+            and CSS color strings as values. For example: <code>{ get: "#0066cc", post: "#00cc66" }</code>.
+            See <a href="https://github.com/swagger-api/swagger-ui/blob/HEAD/METHOD_COLORS_CONFIG.md">Method Colors Configuration</a> for detailed documentation.
+        </td>
+    </tr>
+    <tr>
+        <td>
             <a name="user-content-tryitoutenabled"></a><code>tryItOutEnabled</code>
         </td>
         <td><code>TRY_IT_OUT_ENABLED</code></td>
