@@ -30,19 +30,53 @@ Alternatively, you can set the environment variable `SCARF_ANALYTICS` to `false`
 
 ## Quick start
 
-Install `swagger-ui-react`:
+Install `@nishantrhombuz/swagger-ui-react-custom`:
 
 ```
-$ npm install swagger-ui-react
+$ npm install @nishantrhombuz/swagger-ui-react-custom
 ```
 
 Use it in your React application:
 
 ```js
-import SwaggerUI from "swagger-ui-react"
-import "swagger-ui-react/swagger-ui.css"
+import SwaggerUI from "@nishantrhombuz/swagger-ui-react-custom";
+import "@nishantrhombuz/swagger-ui-react-custom/swagger-ui.css";
 
 export default App = () => <SwaggerUI url="https://petstore.swagger.io/v2/swagger.json" />
+```
+
+### Advanced Usage with Custom Props
+
+```js
+import SwaggerUI from "@nishantrhombuz/swagger-ui-react-custom";
+import "@nishantrhombuz/swagger-ui-react-custom/swagger-ui.css";
+
+export default App = () => (
+  <SwaggerUI 
+    url="https://petstore.swagger.io/v2/swagger.json"
+    
+    // Disable interactive features
+    showTryItOut={false}
+    showAuthorization={false}
+    
+    // Hide info section links
+    showInfoLinks={false}
+    
+    // Keep operations expanded (no collapse)
+    operationsCollapsible={false}
+    
+    // Hide utility buttons
+    showOperationUtilities={false}
+    
+    // Custom HTTP method colors
+    methodColors={{
+      post: '#E20074',
+      get: '#61affe',
+      put: '#fca130',
+      delete: '#f93e3e'
+    }}
+  />
+)
 ```
 
 ## Props
@@ -208,6 +242,63 @@ The default handler will log the error to the console.
 
 ⚠️ This prop is currently only applied once, on mount. Changes to this prop's value will not be propagated to the underlying Swagger UI instance. A future version of this module will remove this limitation, and the change will not be considered a breaking change.
 
+---
+
+## Custom Props
+
+These additional props provide enhanced control over the Swagger UI appearance and behavior.
+
+#### `showTryItOut`: PropTypes.bool
+
+Controls whether the "Try it out" button is displayed on operations. When set to `false`, the "Try it out" functionality is completely disabled. The default is `true`.
+
+⚠️ This prop is currently only applied once, on mount. Changes to this prop's value will not be propagated to the underlying Swagger UI instance. A future version of this module will remove this limitation, and the change will not be considered a breaking change.
+
+#### `showAuthorization`: PropTypes.bool
+
+Controls whether the authorization UI elements (Authorize button and lock icons) are displayed. The default is `true`.
+
+⚠️ This prop is currently only applied once, on mount. Changes to this prop's value will not be propagated to the underlying Swagger UI instance. A future version of this module will remove this limitation, and the change will not be considered a breaking change.
+
+#### `showInfoLinks`: PropTypes.bool
+
+Controls whether links in the info section (URL, contact, license, and external documentation links) are displayed. The default is `true`.
+
+⚠️ This prop is currently only applied once, on mount. Changes to this prop's value will not be propagated to the underlying Swagger UI instance. A future version of this module will remove this limitation, and the change will not be considered a breaking change.
+
+#### `operationsCollapsible`: PropTypes.bool
+
+Controls whether operations can be collapsed/expanded (accordion behavior). When set to `false`, operations remain expanded and cannot be collapsed. The default is `true`.
+
+⚠️ This prop is currently only applied once, on mount. Changes to this prop's value will not be propagated to the underlying Swagger UI instance. A future version of this module will remove this limitation, and the change will not be considered a breaking change.
+
+#### `showOperationUtilities`: PropTypes.bool
+
+Controls whether utility buttons (such as copy-to-clipboard) are displayed on operations. The default is `true`.
+
+⚠️ This prop is currently only applied once, on mount. Changes to this prop's value will not be propagated to the underlying Swagger UI instance. A future version of this module will remove this limitation, and the change will not be considered a breaking change.
+
+#### `methodColors`: PropTypes.object
+
+Allows customization of the colors for HTTP method badges. Provide an object with HTTP method names as keys and color values (hex, rgb, or named colors) as values.
+
+Example:
+```js
+<SwaggerUI 
+  url="https://petstore.swagger.io/v2/swagger.json"
+  methodColors={{
+    get: '#61affe',
+    post: '#49cc90',
+    put: '#fca130',
+    delete: '#f93e3e',
+    patch: '#50e3c2'
+  }}
+/>
+```
+
+⚠️ This prop is currently only applied once, on mount. Changes to this prop's value will not be propagated to the underlying Swagger UI instance. A future version of this module will remove this limitation, and the change will not be considered a breaking change.
+
+---
 
 ## Limitations
 
