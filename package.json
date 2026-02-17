@@ -1,12 +1,13 @@
 {
-  "name": "swagger-ui",
-  "version": "5.31.0",
+  "name": "@upendra19/swagger-ui-custom",
+  "version": "1.0.5",
   "main": "./dist/swagger-ui.js",
   "module": "./dist/swagger-ui-es-bundle-core.js",
   "exports": {
     "./dist/swagger-ui.css": "./dist/swagger-ui.css",
     "./dist/oauth2-redirect.html": "./dist/oauth2-redirect.html",
     "./dist/swagger-ui-standalone-preset": "./dist/swagger-ui-standalone-preset.js",
+    "./react": "./dist/swagger-ui-react.js",
     ".": {
       "browser": {
         "import": "./dist/swagger-ui-es-bundle-core.js",
@@ -38,13 +39,14 @@
   "scripts": {
     "automated-release": "release-it -VV --config ./release/.release-it.json",
     "build": "npm run build-stylesheets && rimraf ./dist/swagger-ui.js ./dist/swagger-ui.js.map && npm run build-all-bundles",
-    "build-all-bundles": "run-p --aggregate-output build:core build:bundle build:standalone build:es:bundle build:es:bundle:core",
+    "build-all-bundles": "run-p --aggregate-output build:core build:bundle build:standalone build:es:bundle build:es:bundle:core build:react",
     "build-stylesheets": "cross-env NODE_ENV=production BABEL_ENV=production BROWSERSLIST_ENV=browser-production webpack --color --config webpack/stylesheets.js && shx sed -i \"s/\\*zoom/zoom/g\" ./dist/swagger-ui.css",
     "build:bundle": "cross-env NODE_ENV=production BABEL_ENV=production BROWSERSLIST_ENV=isomorphic-production webpack --color --config webpack/bundle.js",
     "build:core": "cross-env NODE_ENV=production BABEL_ENV=production BROWSERSLIST_ENV=browser-production webpack --color --config webpack/core.js",
     "build:standalone": "cross-env NODE_ENV=production BABEL_ENV=production BROWSERSLIST_ENV=browser-production webpack --color --config webpack/standalone.js",
     "build:es:bundle": "cross-env NODE_ENV=production BABEL_ENV=production BROWSERSLIST_ENV=isomorphic-production webpack --color --config webpack/es-bundle.js",
     "build:es:bundle:core": "cross-env NODE_ENV=production BABEL_ENV=esm BROWSERSLIST_ENV=browser-production webpack --color --config webpack/es-bundle-core.js",
+    "build:react": "cross-env NODE_ENV=production BABEL_ENV=production BROWSERSLIST_ENV=browser-production webpack --color --config webpack/react-component.js",
     "clean": "rimraf ./dist",
     "dev": "cross-env NODE_ENV=development BABEL_ENV=development BROWSERSLIST_ENV=browser-development webpack serve --config webpack/dev.js",
     "deps-license": "license-checker --production --csv --out $npm_package_config_deps_check_dir/licenses.csv && license-checker --development --csv --out $npm_package_config_deps_check_dir/licenses-dev.csv",
@@ -71,6 +73,11 @@
     "security-audit:all": "npm-audit-ci-wrapper -t moderate",
     "serve-static": "ws -d dist/ --hostname 0.0.0.0 -p 3002",
     "start": "npm-run-all --parallel serve-static open-static"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0 <20",
+    "react-dom": ">=16.8.0 <20",
+    "prop-types": "^15.8.1"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.27.1",

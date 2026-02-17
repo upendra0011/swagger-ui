@@ -93,6 +93,125 @@ https://nightwatchjs.org/guide/getting-started/installation.html#install-seleniu
 
 Integration tests can be run locally with `npm run e2e` - be sure you aren't running a dev server when testing!
 
+## React Component Usage
+
+This package can be used directly as a React component without needing to create a wrapper.
+
+### Installation
+
+```bash
+npm install @upendra19/swagger-ui-custom
+```
+
+**Note:** This package requires `react`, `react-dom`, and `prop-types` as peer dependencies. Make sure they are installed in your project:
+
+```bash
+npm install react react-dom prop-types
+```
+
+### Usage
+
+```jsx
+import SwaggerUI from "@upendra19/swagger-ui-custom/react"
+import "@upendra19/swagger-ui-custom/dist/swagger-ui.css"
+import swaggerSpec from "./your-swagger-spec.json"
+
+const App = () => (
+  <SwaggerUI 
+    spec={swaggerSpec}
+    layout="StandaloneLayout"
+    showAuthorization={false}
+    showTryItOut={false}
+    showInfoLinks={false}
+    disableAccordion={true}
+    showOperationUtilities={false}
+    methodColors={{
+      post: "#E20074",
+      put: "limegreen",
+      get: "rgb(255, 0, 0)",
+    }}
+  />
+)
+
+export default App
+```
+
+**Note:** The React component export (`@upendra19/swagger-ui-custom/react`) provides a ready-to-use React component, while the default export (`@upendra19/swagger-ui-custom`) provides the core JavaScript bundle function for vanilla JavaScript applications.
+
+## Configuration Options
+
+You can control the UI display using the following configuration options. These can be passed to the main Swagger UI configuration or as props to the React component.
+
+### Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `layout` | `String` | `"BaseLayout"` | Layout to use. Use `"StandaloneLayout"` for the standalone layout. |
+| `showAuthorization` | `Boolean` | `true` | Toggle to show/hide Authorize button and lock icons. |
+| `showTryItOut` | `Boolean` | `true` | Toggle to show/hide the "Try it out" button. |
+| `showInfoLinks` | `Boolean` | `true` | Toggle to show/hide info section links (URL, contact, license, external docs). |
+| `disableAccordion` | `Boolean` | `false` | Toggle to keep operations always expanded (disable accordion behavior). |
+| `showOperationUtilities` | `Boolean` | `true` | Toggle to show/hide utility buttons (copy, jump-to) on operations. |
+| `methodColors` | `Object` | `undefined` | Set custom colors for HTTP methods. |
+
+### Usage with SwaggerUIBundle
+
+```javascript
+const ui = SwaggerUIBundle({
+  url: "https://petstore.swagger.io/v2/swagger.json",
+  dom_id: "#swagger-ui",
+  layout: "StandaloneLayout",
+  
+  // Toggle to show/hide Authorize button and lock icons
+  showAuthorization: false,
+  
+  // Toggle to show/hide the "Try it out" button
+  showTryItOut: false,
+  
+  // Toggle to show/hide info section links (URL, contact, license, external docs)
+  showInfoLinks: false,
+  
+  // Toggle to keep operations always expanded (no accordion)
+  disableAccordion: true,
+  
+  // Toggle to show/hide utility buttons (copy, jump-to) on operations
+  showOperationUtilities: false,
+  
+  // Set custom method colors
+  methodColors: {
+    post: "#E20074",
+    put: "limegreen",
+    get: "rgb(255, 0, 0)",
+  }
+})
+```
+
+### Usage with React Component
+
+When using the `swagger-ui-react` package, these options can be passed directly as props to the component.
+
+```jsx
+import SwaggerUI from "swagger-ui-react"
+import "swagger-ui-react/swagger-ui.css"
+
+const App = () => (
+  <SwaggerUI 
+    url="https://petstore.swagger.io/v2/swagger.json"
+    layout="StandaloneLayout"
+    showAuthorization={false}
+    showTryItOut={false}
+    showInfoLinks={false}
+    disableAccordion={true}
+    showOperationUtilities={false}
+    methodColors={{
+      post: "#E20074",
+      put: "limegreen",
+      get: "rgb(255, 0, 0)",
+    }}
+  />
+)
+```
+
 ### Browser support
 Swagger UI works in the latest versions of Chrome, Safari, Firefox, and Edge.
 
