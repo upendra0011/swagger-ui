@@ -8,10 +8,12 @@ export default class OperationContainer extends PureComponent {
   constructor(props, context) {
     super(props, context)
 
-    const { tryItOutEnabled } = props.getConfigs()
+    const { tryItOutEnabled, showTryItOut } = props.getConfigs()
+    // Use showTryItOut if defined, otherwise fall back to tryItOutEnabled
+    const effectiveTryItOut = showTryItOut !== undefined ? showTryItOut : tryItOutEnabled
 
     this.state = {
-      tryItOutEnabled,
+      tryItOutEnabled: effectiveTryItOut,
       executeInProgress: false
     }
   }
@@ -57,13 +59,17 @@ export default class OperationContainer extends PureComponent {
 
   mapStateToProps(nextState, props) {
     const { op, layoutSelectors, getConfigs } = props
-    const { docExpansion, deepLinking, displayOperationId, displayRequestDuration, supportedSubmitMethods, disableAccordion = false } = getConfigs()
-    // console.log('OperationContainer - getConfigs:', getConfigs())
+    const { docExpansion, deepLinking, displayOperationId, displayRequestDuration, supportedSubmitMethods, disableAccordion = false, showTryItOut } = getConfigs()
     const showSummary = layoutSelectors.showSummary()
     const operationId = op.getIn(["operation", "__originalOperationId"]) || op.getIn(["operation", "operationId"]) || opId(op.get("operation"), props.path, props.method) || op.get("id")
     const isShownKey = ["operations", props.tag, operationId]
-    const allowTryItOut = supportedSubmitMethods.indexOf(props.method) >= 0 && (typeof props.allowTryItOut === "undefined" ?
+    // Check showTryItOut config first, then supportedSubmitMethods
+    let allowTryItOut = supportedSubmitMethods.indexOf(props.method) >= 0 && (typeof props.allowTryItOut === "undefined" ?
       props.specSelectors.allowTryItOutFor(props.path, props.method) : props.allowTryItOut)
+    // If showTryItOut is explicitly false, disable try it out regardless of other settings
+    if (showTryItOut === false) {
+      allowTryItOut = false
+    }
     const security = op.getIn(["operation", "security"]) || props.specSelectors.security()
 
     return {

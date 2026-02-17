@@ -37,8 +37,6 @@ export default class OperationSummary extends PureComponent {
       specPath,
     } = this.props
 
-    console.log('OperationSummary - getConfigs:', this.props);
-
     let {
       summary,
       isAuthorized,
@@ -71,7 +69,6 @@ export default class OperationSummary extends PureComponent {
 
     // Get configs directly - default to true to match default behavior
     const configs = getConfigs();
-    console.log('OperationSummary - configs:', configs);
     const { showAuthorization, disableAccordion, showOperationUtilities } = configs;
 
     return (

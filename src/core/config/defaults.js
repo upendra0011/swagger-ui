@@ -68,7 +68,7 @@ const defaultOptions = Object.freeze({
   showAuthorization: true, // Controls whether to show authorization UI (button and lock icons)
   showTryItOut: true, // Controls whether to show the "Try it out" button
   showInfoLinks: true, // Controls whether to show URL, contact, license, and external docs links in info section
-  disableAccordion: true, // Controls whether operations can be collapsed (accordion behavior)
+  disableAccordion: false, // Controls whether operations can be collapsed (accordion behavior)
   showOperationUtilities: true, // Controls whether to show utility buttons (copy, jump-to) on operations
 
   // HTTP method colors - configure custom colors for operation blocks

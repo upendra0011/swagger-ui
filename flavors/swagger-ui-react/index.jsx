@@ -47,6 +47,13 @@ const SwaggerUI = ({
   onComplete = null,
   initialState = config.defaults.initialState,
   uncaughtExceptionHandler = config.defaults.uncaughtExceptionHandler,
+  // Custom props
+  showTryItOut = true,
+  showAuthorization = true,
+  showInfoLinks = true,
+  operationsCollapsible = true,
+  showOperationUtilities = true,
+  methodColors = {},
 }) => {
   const [system, setSystem] = useState(null)
   const SwaggerUIComponent = system?.getComponent("App", "root")
@@ -54,6 +61,9 @@ const SwaggerUI = ({
   const prevUrl = usePrevious(url)
 
   useEffect(() => {
+    // Map custom props to native configs
+    const effectiveTryItOutEnabled = showTryItOut !== undefined ? showTryItOut : tryItOutEnabled
+    
     const systemInstance = SwaggerUIConstructor({
       plugins,
       spec,
@@ -74,7 +84,7 @@ const SwaggerUI = ({
       queryConfigEnabled,
       defaultModelExpandDepth,
       displayOperationId,
-      tryItOutEnabled,
+      tryItOutEnabled: effectiveTryItOutEnabled,
       displayRequestDuration,
       requestSnippetsEnabled,
       requestSnippets,
@@ -87,6 +97,13 @@ const SwaggerUI = ({
       withCredentials,
       initialState,
       uncaughtExceptionHandler,
+      // Custom props passed as native configs
+      showTryItOut,
+      showAuthorization,
+      showInfoLinks,
+      disableAccordion,
+      showOperationUtilities,
+      methodColors: methodColors && Object.keys(methodColors).length > 0 ? methodColors : undefined,
       ...(typeof oauth2RedirectUrl === "string"
         ? { oauth2RedirectUrl: oauth2RedirectUrl }
         : {}),
@@ -171,6 +188,13 @@ SwaggerUI.propTypes = {
   oauth2RedirectUrl: PropTypes.string,
   initialState: PropTypes.object,
   uncaughtExceptionHandler: PropTypes.func,
+  // Custom props
+  showTryItOut: PropTypes.bool,
+  showAuthorization: PropTypes.bool,
+  showInfoLinks: PropTypes.bool,
+  operationsCollapsible: PropTypes.bool,
+  showOperationUtilities: PropTypes.bool,
+  methodColors: PropTypes.object,
 }
 SwaggerUI.System = SwaggerUIConstructor.System
 SwaggerUI.presets = SwaggerUIConstructor.presets
