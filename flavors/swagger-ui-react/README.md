@@ -1,8 +1,8 @@
-# `swagger-ui-react`
+# `swagger-react-custom`
 
-[![NPM version](https://badge.fury.io/js/swagger-ui-react.svg)](http://badge.fury.io/js/swagger-ui-react)
+[![NPM version](https://badge.fury.io/js/swagger-react-custom.svg)](http://badge.fury.io/js/swagger-react-custom)
 
-`swagger-ui-react` is a flavor of Swagger UI suitable for use in React applications.
+`swagger-react-custom` is a customized flavor of Swagger UI suitable for use in React applications.
 
 It has a few differences from the main version of Swagger UI:
 * Declares `react` and `react-dom` as peerDependencies instead of production dependencies
@@ -12,7 +12,7 @@ Versions of this module mirror the version of Swagger UI included in the distrib
 
 ## Anonymized analytics
 
-`swagger-ui-react` uses [Scarf](https://scarf.sh/) to collect [anonymized installation analytics](https://github.com/scarf-sh/scarf-js?tab=readme-ov-file#as-a-user-of-a-package-using-scarf-js-what-information-does-scarf-js-send-about-me). These analytics help support the maintainers of this library and ONLY run during installation. To [opt out](https://github.com/scarf-sh/scarf-js?tab=readme-ov-file#as-a-user-of-a-package-using-scarf-js-how-can-i-opt-out-of-analytics), you can set the `scarfSettings.enabled` field to `false` in your project's `package.json`:
+`swagger-react-custom` uses [Scarf](https://scarf.sh/) to collect [anonymized installation analytics](https://github.com/scarf-sh/scarf-js?tab=readme-ov-file#as-a-user-of-a-package-using-scarf-js-what-information-does-scarf-js-send-about-me). These analytics help support the maintainers of this library and ONLY run during installation. To [opt out](https://github.com/scarf-sh/scarf-js?tab=readme-ov-file#as-a-user-of-a-package-using-scarf-js-how-can-i-opt-out-of-analytics), you can set the `scarfSettings.enabled` field to `false` in your project's `package.json`:
 
 ```
 // package.json
@@ -30,17 +30,17 @@ Alternatively, you can set the environment variable `SCARF_ANALYTICS` to `false`
 
 ## Quick start
 
-Install `@nishantrhombuz/swagger-ui-react-custom`:
+Install `swagger-react-custom`:
 
 ```
-$ npm install @nishantrhombuz/swagger-ui-react-custom
+$ npm install swagger-react-custom
 ```
 
 Use it in your React application:
 
 ```js
-import SwaggerUI from "@nishantrhombuz/swagger-ui-react-custom";
-import "@nishantrhombuz/swagger-ui-react-custom/swagger-ui.css";
+import SwaggerUI from "swagger-react-custom"
+import "swagger-react-custom/swagger-ui.css"
 
 export default App = () => <SwaggerUI url="https://petstore.swagger.io/v2/swagger.json" />
 ```
@@ -48,24 +48,24 @@ export default App = () => <SwaggerUI url="https://petstore.swagger.io/v2/swagge
 ### Advanced Usage with Custom Props
 
 ```js
-import SwaggerUI from "@nishantrhombuz/swagger-ui-react-custom";
-import "@nishantrhombuz/swagger-ui-react-custom/swagger-ui.css";
+import SwaggerUI from "swagger-react-custom"
+import "swagger-react-custom/swagger-ui.css"
 
 export default App = () => (
   <SwaggerUI 
     url="https://petstore.swagger.io/v2/swagger.json"
     
-    // Disable interactive features
-    showTryItOut={false}
+    // showTryItOut toggles the Try It Out button on each operation
+    showTryItOut={true}
+    // tryItOutEnabled toggles the Try It Out button on each operation
+    tryItOutEnabled={false}
+    // showAuthorization toggles the global Authorization button and for each endpoints
     showAuthorization={false}
-    
-    // Hide info section links
+    // showInfoLinks toggles the links below the Title 
     showInfoLinks={false}
-    
-    // Keep operations expanded (disable accordion)
+    // operationsCollapsible toggles the collapsible operations (Accordion for each endpoint)
     disableAccordion={true}
-    
-    // Hide utility buttons
+    // showOperationUtilities toggles the copy to clipboard button on each endpoint
     showOperationUtilities={false}
     
     // Custom HTTP method colors
@@ -186,7 +186,14 @@ An array of functions that augment and modify Swagger UI's functionality. See Sw
 
 #### `tryItOutEnabled`: PropTypes.bool
 
-Controls whether the "Try it out" section should start enabled. The default is false.
+Controls whether the "Try it out" section should start in an expanded/enabled state. The default is false.
+
+⚠️ **Important**: This prop only works when `showTryItOut={true}` (the default). If you set `showTryItOut={false}`, the "Try it out" feature is completely hidden, and `tryItOutEnabled` will have no effect.
+
+**Usage examples**:
+- `showTryItOut={true}` + `tryItOutEnabled={false}`: Shows "Try it out" button (user must click it)
+- `showTryItOut={true}` + `tryItOutEnabled={true}`: Shows the form directly expanded (no button click needed)
+- `showTryItOut={false}`: Hides the "Try it out" feature entirely (tryItOutEnabled is ignored)
 
 ⚠️ This prop is currently only applied once, on mount. Changes to this prop's value will not be propagated to the underlying Swagger UI instance. A future version of this module will remove this limitation, and the change will not be considered a breaking change.
 

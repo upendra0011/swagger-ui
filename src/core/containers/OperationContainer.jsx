@@ -8,12 +8,10 @@ export default class OperationContainer extends PureComponent {
   constructor(props, context) {
     super(props, context)
 
-    const { tryItOutEnabled, showTryItOut } = props.getConfigs()
-    // Use showTryItOut if defined, otherwise fall back to tryItOutEnabled
-    const effectiveTryItOut = showTryItOut !== undefined ? showTryItOut : tryItOutEnabled
+    const { tryItOutEnabled } = props.getConfigs()
 
     this.state = {
-      tryItOutEnabled: effectiveTryItOut,
+      tryItOutEnabled,
       executeInProgress: false
     }
   }

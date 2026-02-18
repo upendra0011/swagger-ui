@@ -61,9 +61,6 @@ const SwaggerUI = ({
   const prevUrl = usePrevious(url)
 
   useEffect(() => {
-    // Map custom props to native configs
-    const effectiveTryItOutEnabled = showTryItOut !== undefined ? showTryItOut : tryItOutEnabled
-    
     const systemInstance = SwaggerUIConstructor({
       plugins,
       spec,
@@ -84,7 +81,7 @@ const SwaggerUI = ({
       queryConfigEnabled,
       defaultModelExpandDepth,
       displayOperationId,
-      tryItOutEnabled: effectiveTryItOutEnabled,
+      tryItOutEnabled,
       displayRequestDuration,
       requestSnippetsEnabled,
       requestSnippets,
