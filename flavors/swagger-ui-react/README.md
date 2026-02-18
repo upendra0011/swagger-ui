@@ -62,8 +62,8 @@ export default App = () => (
     // Hide info section links
     showInfoLinks={false}
     
-    // Keep operations expanded (no collapse)
-    operationsCollapsible={false}
+    // Keep operations expanded (disable accordion)
+    disableAccordion={true}
     
     // Hide utility buttons
     showOperationUtilities={false}
@@ -266,9 +266,9 @@ Controls whether links in the info section (URL, contact, license, and external 
 
 ⚠️ This prop is currently only applied once, on mount. Changes to this prop's value will not be propagated to the underlying Swagger UI instance. A future version of this module will remove this limitation, and the change will not be considered a breaking change.
 
-#### `operationsCollapsible`: PropTypes.bool
+#### `disableAccordion`: PropTypes.bool
 
-Controls whether operations can be collapsed/expanded (accordion behavior). When set to `false`, operations remain expanded and cannot be collapsed. The default is `true`.
+Controls whether the accordion behavior is disabled for operations. When set to `true`, operations remain expanded and cannot be collapsed. When set to `false`, operations can be collapsed/expanded normally. The default is `false`.
 
 ⚠️ This prop is currently only applied once, on mount. Changes to this prop's value will not be propagated to the underlying Swagger UI instance. A future version of this module will remove this limitation, and the change will not be considered a breaking change.
 

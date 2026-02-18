@@ -63,7 +63,6 @@ export default class OperationContainer extends PureComponent {
     const showSummary = layoutSelectors.showSummary()
     const operationId = op.getIn(["operation", "__originalOperationId"]) || op.getIn(["operation", "operationId"]) || opId(op.get("operation"), props.path, props.method) || op.get("id")
     const isShownKey = ["operations", props.tag, operationId]
-    // Check showTryItOut config first, then supportedSubmitMethods
     let allowTryItOut = supportedSubmitMethods.indexOf(props.method) >= 0 && (typeof props.allowTryItOut === "undefined" ?
       props.specSelectors.allowTryItOutFor(props.path, props.method) : props.allowTryItOut)
     // If showTryItOut is explicitly false, disable try it out regardless of other settings

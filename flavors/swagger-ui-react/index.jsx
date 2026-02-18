@@ -51,7 +51,7 @@ const SwaggerUI = ({
   showTryItOut = true,
   showAuthorization = true,
   showInfoLinks = true,
-  operationsCollapsible = true,
+  disableAccordion = false,
   showOperationUtilities = true,
   methodColors = {},
 }) => {
@@ -192,7 +192,7 @@ SwaggerUI.propTypes = {
   showTryItOut: PropTypes.bool,
   showAuthorization: PropTypes.bool,
   showInfoLinks: PropTypes.bool,
-  operationsCollapsible: PropTypes.bool,
+  disableAccordion: PropTypes.bool,
   showOperationUtilities: PropTypes.bool,
   methodColors: PropTypes.object,
 }
