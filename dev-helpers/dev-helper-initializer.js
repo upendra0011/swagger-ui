@@ -19,8 +19,11 @@ window.onload = function() {
     // Toggle to show/hide Authorize button and lock icons
     showAuthorization: false,
     
-    // Toggle to show/hide the "Try it out" button
-    showTryItOut: false,
+    // Toggle to show/hide the "Try it out" button feature entirely
+    showTryItOut: true,
+    
+    // Controls initial state: false = collapsed (shows "Try it out"), true = expanded (shows "Cancel")
+    tryItOutEnabled: true,
     
     // Toggle to show/hide info section links (URL, contact, license, external docs)
     showInfoLinks: false,
