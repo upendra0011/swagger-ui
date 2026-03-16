@@ -39,7 +39,7 @@ export default class Parameters extends Component {
     onTryoutClick: Function.prototype,
     onCancelClick: Function.prototype,
     tryItOutEnabled: false,
-    allowTryItOut: true,
+    allowTryItOut: false,
     onChangeKey: [],
     specPath: [],
   }
@@ -161,7 +161,7 @@ export default class Parameters extends Component {
               <h4 className="opblock-title">Parameters</h4>
             </div>
           )}
-          {allowTryItOut ? (
+          {allowTryItOut && getConfigs()?.showTryItOut !== false ? (
             <TryItOutButton
               isOAS3={specSelectors.isOAS3()}
               hasUserEditedBody={oas3Selectors.hasUserEditedBody(...pathMethod)}

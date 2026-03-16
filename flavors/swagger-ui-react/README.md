@@ -1,8 +1,8 @@
-# `swagger-ui-react`
+# `swagger-react-custom`
 
-[![NPM version](https://badge.fury.io/js/swagger-ui-react.svg)](http://badge.fury.io/js/swagger-ui-react)
+[![NPM version](https://badge.fury.io/js/swagger-react-custom.svg)](http://badge.fury.io/js/swagger-react-custom)
 
-`swagger-ui-react` is a flavor of Swagger UI suitable for use in React applications.
+`swagger-react-custom` is a customized flavor of Swagger UI suitable for use in React applications.
 
 It has a few differences from the main version of Swagger UI:
 * Declares `react` and `react-dom` as peerDependencies instead of production dependencies
@@ -12,7 +12,7 @@ Versions of this module mirror the version of Swagger UI included in the distrib
 
 ## Anonymized analytics
 
-`swagger-ui-react` uses [Scarf](https://scarf.sh/) to collect [anonymized installation analytics](https://github.com/scarf-sh/scarf-js?tab=readme-ov-file#as-a-user-of-a-package-using-scarf-js-what-information-does-scarf-js-send-about-me). These analytics help support the maintainers of this library and ONLY run during installation. To [opt out](https://github.com/scarf-sh/scarf-js?tab=readme-ov-file#as-a-user-of-a-package-using-scarf-js-how-can-i-opt-out-of-analytics), you can set the `scarfSettings.enabled` field to `false` in your project's `package.json`:
+`swagger-react-custom` uses [Scarf](https://scarf.sh/) to collect [anonymized installation analytics](https://github.com/scarf-sh/scarf-js?tab=readme-ov-file#as-a-user-of-a-package-using-scarf-js-what-information-does-scarf-js-send-about-me). These analytics help support the maintainers of this library and ONLY run during installation. To [opt out](https://github.com/scarf-sh/scarf-js?tab=readme-ov-file#as-a-user-of-a-package-using-scarf-js-how-can-i-opt-out-of-analytics), you can set the `scarfSettings.enabled` field to `false` in your project's `package.json`:
 
 ```
 // package.json
@@ -30,19 +30,53 @@ Alternatively, you can set the environment variable `SCARF_ANALYTICS` to `false`
 
 ## Quick start
 
-Install `swagger-ui-react`:
+Install `swagger-react-custom`:
 
 ```
-$ npm install swagger-ui-react
+$ npm install swagger-react-custom
 ```
 
 Use it in your React application:
 
 ```js
-import SwaggerUI from "swagger-ui-react"
-import "swagger-ui-react/swagger-ui.css"
+import SwaggerUI from "swagger-react-custom"
+import "swagger-react-custom/swagger-ui.css"
 
 export default App = () => <SwaggerUI url="https://petstore.swagger.io/v2/swagger.json" />
+```
+
+### Advanced Usage with Custom Props
+
+```js
+import SwaggerUI from "swagger-react-custom"
+import "swagger-react-custom/swagger-ui.css"
+
+export default App = () => (
+  <SwaggerUI 
+    url="https://petstore.swagger.io/v2/swagger.json"
+    
+    // showTryItOut toggles the Try It Out button on each operation
+    showTryItOut={true}
+    // tryItOutEnabled toggles the Try It Out button on each operation
+    tryItOutEnabled={false}
+    // showAuthorization toggles the global Authorization button and for each endpoints
+    showAuthorization={false}
+    // showInfoLinks toggles the links below the Title 
+    showInfoLinks={false}
+    // operationsCollapsible toggles the collapsible operations (Accordion for each endpoint)
+    disableAccordion={true}
+    // showOperationUtilities toggles the copy to clipboard button on each endpoint
+    showOperationUtilities={false}
+    
+    // Custom HTTP method colors
+    methodColors={{
+      post: '#E20074',
+      get: '#61affe',
+      put: '#fca130',
+      delete: '#f93e3e'
+    }}
+  />
+)
 ```
 
 ## Props
@@ -152,7 +186,14 @@ An array of functions that augment and modify Swagger UI's functionality. See Sw
 
 #### `tryItOutEnabled`: PropTypes.bool
 
-Controls whether the "Try it out" section should start enabled. The default is false.
+Controls whether the "Try it out" section should start in an expanded/enabled state. The default is false.
+
+⚠️ **Important**: This prop only works when `showTryItOut={true}` (the default). If you set `showTryItOut={false}`, the "Try it out" feature is completely hidden, and `tryItOutEnabled` will have no effect.
+
+**Usage examples**:
+- `showTryItOut={true}` + `tryItOutEnabled={false}`: Shows "Try it out" button (user must click it)
+- `showTryItOut={true}` + `tryItOutEnabled={true}`: Shows the form directly expanded (no button click needed)
+- `showTryItOut={false}`: Hides the "Try it out" feature entirely (tryItOutEnabled is ignored)
 
 ⚠️ This prop is currently only applied once, on mount. Changes to this prop's value will not be propagated to the underlying Swagger UI instance. A future version of this module will remove this limitation, and the change will not be considered a breaking change.
 
@@ -208,6 +249,63 @@ The default handler will log the error to the console.
 
 ⚠️ This prop is currently only applied once, on mount. Changes to this prop's value will not be propagated to the underlying Swagger UI instance. A future version of this module will remove this limitation, and the change will not be considered a breaking change.
 
+---
+
+## Custom Props
+
+These additional props provide enhanced control over the Swagger UI appearance and behavior.
+
+#### `showTryItOut`: PropTypes.bool
+
+Controls whether the "Try it out" button is displayed on operations. When set to `false`, the "Try it out" functionality is completely disabled. The default is `true`.
+
+⚠️ This prop is currently only applied once, on mount. Changes to this prop's value will not be propagated to the underlying Swagger UI instance. A future version of this module will remove this limitation, and the change will not be considered a breaking change.
+
+#### `showAuthorization`: PropTypes.bool
+
+Controls whether the authorization UI elements (Authorize button and lock icons) are displayed. The default is `true`.
+
+⚠️ This prop is currently only applied once, on mount. Changes to this prop's value will not be propagated to the underlying Swagger UI instance. A future version of this module will remove this limitation, and the change will not be considered a breaking change.
+
+#### `showInfoLinks`: PropTypes.bool
+
+Controls whether links in the info section (URL, contact, license, and external documentation links) are displayed. The default is `true`.
+
+⚠️ This prop is currently only applied once, on mount. Changes to this prop's value will not be propagated to the underlying Swagger UI instance. A future version of this module will remove this limitation, and the change will not be considered a breaking change.
+
+#### `disableAccordion`: PropTypes.bool
+
+Controls whether the accordion behavior is disabled for operations. When set to `true`, operations remain expanded and cannot be collapsed. When set to `false`, operations can be collapsed/expanded normally. The default is `false`.
+
+⚠️ This prop is currently only applied once, on mount. Changes to this prop's value will not be propagated to the underlying Swagger UI instance. A future version of this module will remove this limitation, and the change will not be considered a breaking change.
+
+#### `showOperationUtilities`: PropTypes.bool
+
+Controls whether utility buttons (such as copy-to-clipboard) are displayed on operations. The default is `true`.
+
+⚠️ This prop is currently only applied once, on mount. Changes to this prop's value will not be propagated to the underlying Swagger UI instance. A future version of this module will remove this limitation, and the change will not be considered a breaking change.
+
+#### `methodColors`: PropTypes.object
+
+Allows customization of the colors for HTTP method badges. Provide an object with HTTP method names as keys and color values (hex, rgb, or named colors) as values.
+
+Example:
+```js
+<SwaggerUI 
+  url="https://petstore.swagger.io/v2/swagger.json"
+  methodColors={{
+    get: '#61affe',
+    post: '#49cc90',
+    put: '#fca130',
+    delete: '#f93e3e',
+    patch: '#50e3c2'
+  }}
+/>
+```
+
+⚠️ This prop is currently only applied once, on mount. Changes to this prop's value will not be propagated to the underlying Swagger UI instance. A future version of this module will remove this limitation, and the change will not be considered a breaking change.
+
+---
 
 ## Limitations
 

@@ -141,19 +141,28 @@ $browser-context: 16;
   background: color.adjust($color-delete, $lightness: 35%);
 }
 
-@mixin method($color) {
-  border-color: $color;
-  background: rgba($color, 0.1);
+@mixin method($color, $method-name: null) {
+  // Use CSS custom property if available, otherwise fallback to SCSS variable
+  $final-color: if($method-name, var(--color-#{$method-name}, #{$color}), $color);
+    
+  border-color: $final-color;
+
+  // Let CSS handle the opacity with color-mix (works with any color format)
+  @if $method-name {
+    background: color-mix(in srgb, var(--color-#{$method-name}, #{$color}) 10%, transparent);
+  } @else {
+    background: rgba($color, 0.1);
+  }
 
   .opblock-summary-method {
-    background: $color;
+    background: $final-color;
   }
 
   .opblock-summary {
-    border-color: $color;
+    border-color: $final-color;
   }
 
   .tab-header .tab-item.active h4 span:after {
-    background: $color;
+    background: $final-color;
   }
 }

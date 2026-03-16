@@ -60,6 +60,7 @@ import DeepLink from "core/components/deep-link"
 import SvgAssets from "core/components/svg-assets"
 import Markdown from "core/components/providers/markdown"
 import BaseLayout from "core/components/layouts/base"
+import MethodColors from "core/components/method-colors"
 
 const CoreComponentsPlugin = () => ({
   components: {
@@ -121,6 +122,7 @@ const CoreComponentsPlugin = () => ({
     OpenAPIVersion,
     DeepLink,
     SvgAssets,
+    MethodColors,
     Example,
     ExamplesSelect,
     ExamplesSelectValueRetainer,

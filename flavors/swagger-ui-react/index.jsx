@@ -47,6 +47,13 @@ const SwaggerUI = ({
   onComplete = null,
   initialState = config.defaults.initialState,
   uncaughtExceptionHandler = config.defaults.uncaughtExceptionHandler,
+  // Custom props
+  showTryItOut = true,
+  showAuthorization = true,
+  showInfoLinks = true,
+  disableAccordion = false,
+  showOperationUtilities = true,
+  methodColors = {},
 }) => {
   const [system, setSystem] = useState(null)
   const SwaggerUIComponent = system?.getComponent("App", "root")
@@ -87,6 +94,13 @@ const SwaggerUI = ({
       withCredentials,
       initialState,
       uncaughtExceptionHandler,
+      // Custom props passed as native configs
+      showTryItOut,
+      showAuthorization,
+      showInfoLinks,
+      disableAccordion,
+      showOperationUtilities,
+      methodColors: methodColors && Object.keys(methodColors).length > 0 ? methodColors : undefined,
       ...(typeof oauth2RedirectUrl === "string"
         ? { oauth2RedirectUrl: oauth2RedirectUrl }
         : {}),
@@ -171,6 +185,13 @@ SwaggerUI.propTypes = {
   oauth2RedirectUrl: PropTypes.string,
   initialState: PropTypes.object,
   uncaughtExceptionHandler: PropTypes.func,
+  // Custom props
+  showTryItOut: PropTypes.bool,
+  showAuthorization: PropTypes.bool,
+  showInfoLinks: PropTypes.bool,
+  disableAccordion: PropTypes.bool,
+  showOperationUtilities: PropTypes.bool,
+  methodColors: PropTypes.object,
 }
 SwaggerUI.System = SwaggerUIConstructor.System
 SwaggerUI.presets = SwaggerUIConstructor.presets
